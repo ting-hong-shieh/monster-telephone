@@ -30,7 +30,7 @@ def datum(tokenizer, row: dict) -> tinker.Datum:
     )
 
 
-async def train(service, rows: list[dict], args) -> str:
+async def train(service, rows: list[dict], args) -> tuple[str, str]:
     trainer = await service.create_lora_training_client_async(base_model=BASE, rank=args.rank)
     tokenizer = trainer.get_tokenizer()
     data = [datum(tokenizer, row) for row in rows]
@@ -46,8 +46,11 @@ async def train(service, rows: list[dict], args) -> str:
             await optimise.result_async()
             step += 1
         print("epoch", epoch, "steps", step, flush=True)
+    # Sampler weights can only be served. The training checkpoint is what can be exported.
+    state = await (await trainer.save_state_async(name=args.name)).result_async()
+    print("state", state.path, flush=True)
     saved = await (await trainer.save_weights_for_sampler_async(name=args.name)).result_async()
-    return saved.path
+    return saved.path, state.path
 
 
 async def examine(client, tokenizer, monsters: list[str], samples: int) -> list[dict]:
@@ -91,6 +94,7 @@ async def main() -> None:
     parser.add_argument("--rank", type=int, default=32)
     parser.add_argument("--samples", type=int, default=2)
     parser.add_argument("--name", default="artist")
+    parser.add_argument("--only", nargs="+", default=["base", "student", "teacher"])
     parser.add_argument("--out", required=True)
     args = parser.parse_args()
     data = Path(args.data)
@@ -100,14 +104,16 @@ async def main() -> None:
     monsters = json.loads((data / "held_out.json").read_text())
 
     service = tinker.ServiceClient(display_name="monster-telephone-learn")
-    path = await train(service, rows, args)
+    path, state = await train(service, rows, args)
     base = await service.create_sampling_client_async(base_model=BASE)
     tokenizer = base.get_tokenizer()
     teacher = await service.create_sampling_client_async(base_model=TEACHER)
     student = await service.create_sampling_client_async(model_path=path)
 
-    results = {"path": path, "drawings": {}, "summary": {}}
+    results = {"path": path, "state": state, "drawings": {}, "summary": {}}
     for name, client, words in (("base", base, tokenizer), ("student", student, tokenizer), ("teacher", teacher, teacher.get_tokenizer())):
+        if name not in args.only:
+            continue
         drawn = await examine(client, words, monsters, args.samples)
         results["drawings"][name] = drawn
         results["summary"][name] = summary(drawn)

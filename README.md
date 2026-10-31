@@ -46,6 +46,10 @@ uv run --no-project --with tinker --with transformers --with jinja2 python learn
 
 The server in `server/` needs `ARTIST_PATH`, the sampler path saved by `learn.py`. The page in `site/` is static.
 
+## Weights
+
+The fine-tuned artist is a rank 64 LoRA adapter for `Qwen/Qwen3.5-4B`, Apache-2.0, in the [artist-2 release](https://github.com/ting-hong-shieh/monster-telephone/releases/tag/artist-2). `learn.py` now saves a training checkpoint as well, because Tinker can only serve a sampler checkpoint. I retrained with the same data and settings so the weights could be exported. This run scored 118 of 120 valid drawings on the held-out prompts (`data/artist-2-results.json`). The first run scored 117 of 120. The blind test in `tests/` used the first run.
+
 ## License
 
 Apache-2.0.
