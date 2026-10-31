@@ -20,11 +20,18 @@ const ease = x => .5 - Math.cos(Math.PI * Math.max(0, Math.min(1, x))) / 2;
 const mix = (a, b, p) => a + (b - a) * p;
 
 // One requestAnimationFrame clock owns body, trailing sheet, pen, set and ink.
-function timeline(duration, update, readable = false) {
+function timeline(duration, update, readable = false, soon) {
   return new Promise(resolve => {
     const track = { start: performance.now(), duration: reduced && !readable ? Math.min(duration, 300) : duration, update, resolve };
     tracks.add(track);
+    soon?.then(() => hurry(track));
   });
+}
+// Finish from wherever the track has reached, without a jump in its progress.
+function hurry(track, ms = 180) {
+  const now = performance.now(), p = Math.min(1, (now - track.start) / track.duration);
+  if (track.duration * (1 - p) <= ms) return;
+  track.duration = ms / (1 - p); track.start = now - p * track.duration;
 }
 export function hold(ms) { return timeline(ms, () => {}, true); }
 export async function still(ms) { quiet = true; await hold(ms); quiet = false; }
@@ -61,7 +68,7 @@ export function poseGhost(element, elapsed, kind = 'whisper') {
   element.dataset.pose = elapsed < 420 ? 'anticipation' : elapsed < 1190 ? 'action' : elapsed < 1640 ? 'follow-through' : 'rest';
 }
 
-export async function ghostAction(name, kind = 'whisper', duration = 1820) {
+export async function ghostAction(name, kind = 'whisper', duration = 1820, soon) {
   const element = document.getElementById(`ghost-${name}`);
   if (!element) return;
   const owner = Symbol('action');
@@ -74,7 +81,7 @@ export async function ghostAction(name, kind = 'whisper', duration = 1820) {
     poseGhost(element, reduced ? 1640 : p * 1820, kind);
     if (!sounded && p > .25) { cue(kind === 'draw' ? 'pen' : 'whisper'); sounded = true; if (kind === 'whisper') bubble.hidden = false; }
     if (kind === 'whisper') bubble.setAttribute('style', `transform:translate(${reduced ? 0 : Math.sin(ease(p) * Math.PI * 2) * -18}px,${reduced ? 0 : Math.sin(ease(p) * Math.PI) * -10}px) rotate(${8 - ease(p) * 10}deg)`);
-  });
+  }, false, soon);
   if (kind === 'whisper') bubble.hidden = true;
   poseGhost(element, 1820, kind);
   if (owners.get(element) === owner) { busyGhosts.delete(element); owners.delete(element); }

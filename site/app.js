@@ -17,7 +17,7 @@ const turns = [
 let data, chain, phase = 'idle', stepIndex = 0, pendingResolve, playerResolve;
 let strokes = [], currentStroke = null, activePointer = null, rescueTimer;
 let flipTimer, flipGeneration = 0, flipPlaying = false, flipIndex = 0;
-let runGeneration = 0, suggestion = 0, watchIndex = 0, rescueDrawing;
+let runGeneration = 0, suggestion = 0, watchIndex = 0, rescueDrawing, ahead, easeTimer;
 const smallScreen = matchMedia('(max-width: 700px)');
 
 function placeDrawingControls() {
@@ -120,7 +120,7 @@ async function watchRecorded() {
 async function start(whisper) {
   if (!data || !['idle', 'whisper'].includes(phase)) return;
   if (engine.getMode() === 'recorded') { await watchRecorded(); return; }
-  chain = newChain(whisper); stepIndex = 0; rescueDrawing = undefined; ++runGeneration; prepareRound(); showWords(whisper);
+  chain = newChain(whisper); stepIndex = 0; rescueDrawing = ahead = undefined; ++runGeneration; prepareRound(); showWords(whisper);
   await continueRound();
 }
 function waitForContinue() {
@@ -128,13 +128,27 @@ function waitForContinue() {
   if (smallScreen.matches) $('continue').scrollIntoView({ behavior: motion.reduced ? 'instant' : 'smooth', block: 'nearest' });
   return new Promise(resolve => { pendingResolve = resolve; });
 }
-// Ghosts stay busy for as long as the server takes.
+// Ghosts stay busy for as long as the server takes, and stop when the reply lands.
 async function busy(ghost, kind, work) {
   let settled = false;
-  const job = work.finally(() => { settled = true; });
-  job.catch(() => {});
-  do await motion.ghostAction(ghost, kind, 1100); while (!settled);
-  return job;
+  const ready = Promise.allSettled([work, motion.hold(800)]).then(() => { settled = true; });
+  do await motion.ghostAction(ghost, kind, 1100, ready); while (!settled);
+  return work;
+}
+function request(i) {
+  const previous = chain.steps.at(-1);
+  if (turns[i].kind === 'whisper') return engine.whisper(previous.svg);
+  return engine.draw(i === 0 || i === 2 ? chain.first : previous.text);
+}
+// The next ghost starts work while this turn's result is still on the table.
+function lookAhead(i) {
+  if (i === 2 || i > 5) return;
+  ahead = request(i); ahead.catch(() => {});
+}
+function take(i) { const job = ahead ?? request(i); ahead = undefined; return job; }
+function easeStage() {
+  $('theatre').classList.add('easing'); clearTimeout(easeTimer);
+  easeTimer = setTimeout(() => $('theatre').classList.remove('easing'), 400);
 }
 const readingTime = text => Math.min(4200, 1500 + text.trim().split(/\s+/).length * 240);
 async function continueRound() {
@@ -142,10 +156,13 @@ async function continueRound() {
   try {
     for (; stepIndex < 6; stepIndex++) {
       const i = stepIndex, turn = turns[i]; setTurn(i);
-      $('turn-copy').textContent = turn.kind === 'draw' ? `${turn.name} is drawing…` : `${turn.name} is studying the drawing…`;
       const previous = chain.steps.at(-1);
+      const working = turn.kind === 'draw' ? `${turn.name} is drawing…` : `${turn.name} is studying the drawing…`;
+      // Moth's guess about the rescue stays up until Hush's ink begins.
+      $('turn-copy').textContent = i === 4 ? `“${previous.text}”` : working;
       if (turn.kind === 'draw') {
-        const text = i === 0 ? chain.first : i === 2 ? chain.first : previous.text; prompt(text);
+        const text = i === 0 || i === 2 ? chain.first : previous.text;
+        if (i !== 4) prompt(text);
         let svg, delegated = false;
         if (i === 2) {
           $('turn-copy').textContent = "They've lost your monster. Draw it back into the story.";
@@ -153,20 +170,25 @@ async function continueRound() {
           $('next-prompt').hidden = true;
           if (rescueDrawing === undefined) rescueDrawing = await playerTurn();
           svg = rescueDrawing; delegated = svg === null;
+          paperLabel(delegated ? 'A ghost draws for you' : 'Your rescue drawing', '3');
           // The rescue always starts from the original whisper.
           if (delegated) { $('turn-copy').textContent = 'A ghost is drawing your original whisper.'; prompt(chain.first); }
         }
         if (i !== 2 || delegated) {
-          const result = await busy(turn.ghost, 'draw', engine.draw(text)); svg = result.svg;
+          const result = await busy(turn.ghost, 'draw', take(i)); svg = result.svg;
+          if (i === 4) { $('turn-copy').textContent = working; prompt(text); }
           await motion.pageTurn();
-          await motion.strokeOn(showMonster(svg), 3000);
-        } else showMonster(svg, 'Your rescue drawing');
+        }
+        const drawing = showMonster(svg, i === 2 && !delegated ? 'Your rescue drawing' : undefined);
         chain.steps.push({ kind: 'draw', svg, name: i === 2 ? delegated ? 'Rescue ghost' : 'You' : turn.name, rescue: i === 2, delegated });
+        lookAhead(i + 1);
+        if (i !== 2 || delegated) await motion.strokeOn(drawing, 3000);
         $('turn-copy').textContent = i === 2 ? 'Your rescue is on its way to Moth.' : 'The drawing is ready.';
         await motion.still(i === 2 ? 800 : 1000);
       } else {
-        const result = await busy(turn.ghost, 'whisper', engine.whisper(previous.svg));
+        const result = await busy(turn.ghost, 'whisper', take(i));
         chain.steps.push({ kind: 'whisper', text: result.text, name: turn.name });
+        lookAhead(i + 1);
         $('turn-copy').textContent = `“${result.text}”`; $('next-prompt').hidden = true;
         // Leave the picture beside its guess and give the rescue reading stillness.
         await motion.still(readingTime(result.text) + (i === 3 ? 1200 : 0));
@@ -188,13 +210,13 @@ async function continueRound() {
 function playerTurn() {
   return new Promise(resolve => {
     playerResolve = resolve; phase = 'drawing'; strokes = []; currentStroke = null; activePointer = null;
-    document.body.classList.add('rescuing');
+    document.body.classList.add('rescuing'); easeStage();
     $('draw-canvas').replaceChildren(); $('draw-canvas').removeAttribute('hidden'); $('monster-frame').hidden = true;
     $('drawing-controls').hidden = false; $('play-aside').hidden = true; $('theatre').classList.add('drawing-mode');
     $('draw-time').textContent = 'About 30 seconds; take the time you need.';
     clearTimeout(rescueTimer); rescueTimer = setTimeout(() => { $('draw-time').textContent = 'Thirty seconds have passed. Finish when you’re ready.'; }, 30000);
     placeDrawingControls(); $('paper-holder').style.transform = ''; updateTools(); motion.setInk(null);
-    paperLabel('Your rescue drawing', '3');
+    paperLabel(`Turn 3 of 6 · Draw “${chain.first}”`, '3');
     if (smallScreen.matches) scrollTo({ top: 0, behavior: motion.reduced ? 'instant' : 'smooth' });
   });
 }
@@ -202,7 +224,7 @@ function finishDrawing(delegate = false) {
   if (phase !== 'drawing' || (!delegate && !strokes.length)) return;
   if (activePointer !== null) endStroke({ pointerId: activePointer });
   const svg = delegate ? null : engine.sanitizeSVG($('draw-canvas').outerHTML).outerHTML;
-  clearTimeout(rescueTimer); $('draw-canvas').setAttribute('hidden', ''); $('monster-frame').hidden = false;
+  clearTimeout(rescueTimer); easeStage(); $('draw-canvas').setAttribute('hidden', ''); $('monster-frame').hidden = false;
   $('drawing-controls').hidden = true; $('play-aside').hidden = false; $('theatre').classList.remove('drawing-mode');
   document.body.classList.remove('rescuing');
   phase = 'playing'; placeDrawingControls(); playerResolve(svg); playerResolve = undefined;
@@ -298,7 +320,7 @@ function resetGame(whisper = null, clearRoute = true) {
   $('play-aside').textContent = 'Ghosts only see the drawing. They can get it wrong.';
   panel(whisper ? 'whisper-panel' : 'intro-panel'); badges();
   if (whisper) $('first-whisper').value = whisper;
-  if (data) showMonster(data.chains[0].steps[1].svg, 'Recorded model drawing: a bat with too many teeth');
+  if (data) showMonster(data.chains[0].steps[1].svg, `Recorded model drawing: ${data.chains[0].start}`);
   paperLabel('Recorded model drawing', '1', data?.chains[0].start || '');
   $('stage-counter').textContent = '';
   if (clearRoute) history.replaceState(null, '', location.pathname + location.search);
