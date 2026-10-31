@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4efdf">
+  <meta name="description" content="Whisper a monster. Pass it through five ghosts. See what comes back. A little drawing game about getting wonderfully lost in translation.">
+  <title>Monster Telephone — pass it on.</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath fill='%23f4efdf' stroke='%23212835' stroke-width='3' d='M12 54V30a20 20 0 0140 0v24l-10-7-10 7-10-7z'/%3E%3Cpath stroke='%23212835' stroke-width='5' stroke-linecap='round' d='M25 29v5m14-5v5'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+  <script type="module" src="app.js"></script>
+</head>
+<body>
+  <div class="site-shell">
+    <header class="masthead">
+      <a class="wordmark" href="./" aria-label="Monster Telephone home"><svg viewBox="0 0 40 45" aria-hidden="true"><path d="M6 37V20C6 1 34 1 34 20v17l-7-5-7 6-7-6z"/><path d="M15 18v5m10-5v5m-9 6q4 4 8 0"/></svg><span>MONSTER<br>TELEPHONE<span class="brand-dot">.</span></span></a>
+      <span class="masthead-note">A SMALL GAME OF BIG MISUNDERSTANDINGS</span>
+      <div class="header-actions"><button class="sound-toggle" id="sound-toggle" aria-pressed="false" aria-label="Turn sound on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4zM16 9l5 6m0-6-5 6"/></svg><span>Sound off</span></button><button class="text-button" id="how-button">How to play <span aria-hidden="true">↗</span></button></div>
+    </header>
+
+    <main id="main">
+      <div class="notice" id="notice" role="status" hidden></div>
+      <section class="game-layout" aria-label="Monster Telephone game">
+        <div class="story-column">
+          <div class="edition"><span class="tiny-star">✳</span> FIVE GHOSTS. ONE VERY BAD CONNECTION.</div>
+          <div id="intro-panel">
+            <h1>Monster<br><em>Telephone</em><svg class="title-squiggle" viewBox="0 0 270 18" aria-hidden="true"><path d="M3 12Q100 0 262 7M24 16Q140 8 245 13"/></svg></h1>
+            <p class="intro-copy">Five AI ghosts pass your monster between whispers and drawings. Can you keep it recognizable?</p>
+            <div class="home-actions"><button class="primary" id="watch">Watch one go wrong · 15 seconds</button><button class="secondary" id="try">Try saving a monster</button></div>
+            <p class="play-aside">Play solo. Drawing optional.</p>
+          </div>
+          <div id="whisper-panel" hidden>
+            <h1>A monster<br>worth <em>saving.</em></h1>
+            <p class="intro-copy">Start with this whisper, shuffle for another, or write your own.</p>
+            <form id="start-form" class="whisper-form">
+              <label for="first-whisper">YOUR ORIGINAL WHISPER</label>
+              <div class="input-wrap"><input id="first-whisper" name="whisper" maxlength="140" value="a bat with too many teeth" required autocomplete="off"><button type="button" class="shuffle" id="shuffle" aria-label="Try another monster"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m17 3 4 4-4 4M3 7h4c6 0 4 10 10 10h4m-4-4 4 4-4 4M3 17h4c2 0 3-2 4-4m3-3c1-2 2-3 4-3h3"/></svg></button></div>
+              <button class="primary start-button" type="submit">Pass it to the ghosts <span aria-hidden="true">↗</span></button>
+            </form>
+            <p class="play-aside">Ghosts are fallible readers. They only read the shape data of a drawing.</p>
+          </div>
+          <div id="play-panel" class="play-panel" hidden>
+            <div class="play-heading"><span class="eyebrow" id="turn-label"></span><span class="recorded-tag" data-recorded hidden>Recorded chain</span></div>
+            <h1 id="turn-title" tabindex="-1"></h1>
+            <p class="turn-copy" id="turn-copy" aria-live="polite"></p>
+            <div id="rescue-original" class="original-whisper" hidden><span class="eyebrow">YOUR ORIGINAL WHISPER</span><blockquote id="rescue-text"></blockquote></div>
+            <p id="next-prompt" class="next-prompt" hidden></p>
+            <ol class="turn-list" id="turn-list" aria-label="Six turns"></ol>
+            <div id="drawing-controls" hidden><p class="drawing-hint">Draw on the paper. <span id="draw-time">About 30 seconds; take the time you need.</span></p><div class="draw-tools"><button class="secondary" id="undo">↶ Undo</button><button class="primary" id="done">Done ↗</button><button class="secondary" id="pass">Let a ghost draw</button></div></div>
+            <div id="continue-controls" hidden><button class="primary" id="continue">Pass it on ↗</button></div>
+            <div id="failure-controls" hidden><button class="primary" id="retry">Retry</button><button class="secondary" id="failure-watch">Watch a recorded chain</button></div>
+            <p class="play-aside" id="play-aside">Ghosts only read the shape data. They can get it wrong.</p>
+          </div>
+          <div id="result-panel" class="result-panel" hidden>
+            <div class="play-heading"><span class="eyebrow">BACK FROM THE OTHER SIDE</span><span class="recorded-tag" data-recorded hidden>Recorded chain</span></div>
+            <h1>Well, that<br>took a <em>turn.</em></h1>
+            <div class="comparison"><div class="original-whisper"><span class="eyebrow">ORIGINAL</span><blockquote id="original-text"></blockquote></div><div class="final-whisper"><span class="eyebrow">ENDING</span><p id="final-text"></p></div></div>
+            <div class="result-actions"><button class="primary" id="result-try" hidden>Try saving a monster</button><button class="primary" id="same">Try this monster again</button><button class="secondary" id="again">New monster</button></div>
+            <p id="training-note" class="sample-note" hidden>A small open model, fine-tuned on Tinker, does the drawing. Valid drawings on held-out monsters: 117 of 120, up from 54 of 120 before training. Valid means the drawing passes a format check, not that it looks right.</p>
+            <div class="save-tools"><label for="strip-pair">The drawing and guess in your strip</label><select id="strip-pair"><option value="0">The first misunderstanding</option><option value="1">The rescue turn</option><option value="2">The final misunderstanding</option></select><button class="secondary" id="save-strip">Save this chain</button><button class="text-button" id="share" hidden>Copy chain link ↗</button></div>
+            <p class="share-status" id="share-status" role="status"></p>
+          </div>
+        </div>
+
+        <div class="theatre-column">
+          <div class="stage-caption"><span><span class="orange-dot"></span> THE WHISPERING ROOM</span><span>PLEASE DISTURB THE GHOSTS</span></div>
+          <div class="theatre" id="theatre">
+            <svg class="set-art" viewBox="0 0 680 600" preserveAspectRatio="none" aria-hidden="true">
+              <path class="stage-arch" d="M34 540V110Q34 38 110 38H570Q646 38 646 110V540"/>
+              <path class="curtain curtain-left" d="M0 0H170Q169 72 111 116Q75 147 32 151L43 357 0 375Z"/>
+              <path class="curtain-fold" d="M38 0Q66 93 18 148M77 0Q101 84 34 145M123 0Q124 89 43 140M29 161 18 334"/>
+              <path class="curtain curtain-right" d="M680 0H510Q511 72 569 116Q605 147 648 151L637 357 680 375Z"/>
+              <path class="curtain-fold" d="M642 0Q614 93 662 148M603 0Q579 84 646 145M557 0Q556 89 637 140M651 161l11 173"/>
+              <path class="curtain-tie" d="m13 147 30-10 4 15-31 9M667 147l-30-10-4 15 31 9"/>
+              <path class="moon" d="M354 60v32m7 4a18 18 0 1 0 17 25q-23 3-17-25Z"/>
+              <g class="stage-stars"><path d="m183 121 3 8 8 3-8 3-3 9-3-9-8-3 8-3zM514 172v16m-8-8h16M126 275v10m-5-5h10M542 335v14m-7-7h14M244 73v7m-4-3h8"/><path d="m485 100 1 1M151 192l1 1M536 247l1 1M232 422l1 1M443 387l1 1"/></g>
+              <path class="floor-line" d="M0 493Q340 478 680 493M0 515Q340 501 680 515M56 510l-17 50m128-54-9 54m182-54v54m181-53 10 53m93-50 17 50"/>
+              <g class="footlights"><path d="M75 500q-13-24-26 0zM199 497q-13-24-26 0zM353 495q-13-24-26 0zM507 497q-13-24-26 0zM631 500q-13-24-26 0z"/><path class="light-ray" d="m62 462-4-12m-13 17-8-7m40 4 8-8m101 4v-12m141 9 2-12m166 16 5-12m119 15 5-11"/></g>
+            </svg>
+            <div class="paper-holder" id="paper-holder"><div class="paper" id="paper"><div class="paper-meta"><span id="paper-kicker">A MONSTER, MORE OR LESS</span><span id="paper-number">01</span></div><div class="monster-frame" id="monster-frame" role="img" aria-label="A recorded model drawing"></div><svg id="draw-canvas" viewBox="0 0 256 256" role="img" aria-label="Your drawing paper" tabindex="0" hidden></svg><div class="paper-bottom"><span id="paper-footer">it sounded different in my head.</span><svg viewBox="0 0 39 22" aria-hidden="true"><path d="M3 14q8-8 13-1t10-1m-4-5 10 4-8 7"/></svg></div></div></div>
+            <div class="whisper-bubble" id="whisper-bubble" hidden><span>psst…</span></div>
+            <div class="ghost-seat seat-pip" data-name="Pip"><div class="ghost-art" id="ghost-pip"></div><span class="ghost-name">Pip <i>the enthusiast</i></span></div>
+            <div class="ghost-seat seat-dot" data-name="Dot"><div class="ghost-art" id="ghost-dot"></div><span class="ghost-name">Dot <i>the overthinker</i></span></div>
+            <div class="ghost-seat seat-moth" data-name="Moth"><div class="ghost-art" id="ghost-moth"></div><span class="ghost-name">Moth <i>the dreamer</i></span></div>
+            <div class="ghost-seat seat-hush" data-name="Hush"><div class="ghost-art" id="ghost-hush"></div><span class="ghost-name">Hush <i>the worrier</i></span></div>
+            <div class="ghost-seat seat-wisp" data-name="Wisp"><div class="ghost-art" id="ghost-wisp"></div><span class="ghost-name">Wisp <i>the dramatist</i></span></div>
+            <span class="stage-bottom-note">NO TWO GHOSTS SEE IT THE SAME.</span>
+          </div>
+          <p id="flipbook-caption" class="flipbook-caption" aria-live="polite" hidden></p>
+          <div id="flipbook-controls" class="flipbook-controls" hidden><button class="secondary" id="flip-play">Ⅱ Pause flipbook</button><input type="range" id="flip-range" min="0" max="6" value="0" aria-label="Flipbook turn"><span id="flip-count">0 / 6</span></div>
+          <div class="theatre-under"><span class="hand-note">a perfectly unreliable little cast</span><svg viewBox="0 0 70 36" aria-hidden="true"><path d="M2 30Q44 39 59 5m-11 5 12-6 3 13"/></svg><span class="stage-counter" id="stage-counter">THE STAGE IS YOURS</span></div>
+        </div>
+      </section>
+
+      <section class="how-strip" id="how-to-play" aria-label="How to play"><div class="how-title"><span class="eyebrow">THE RULES ARE SIMPLE</span><p>Let it get lost<br>in translation.</p></div><div class="how-step"><span class="step-number">01</span><div><h2>You whisper.</h2><p>Dream up a peculiar creature.</p></div></div><span class="how-arrow" aria-hidden="true">⤳</span><div class="how-step"><span class="step-number">02</span><div><h2>We pass it on.</h2><p>Draw. Guess. Rescue your monster.</p></div></div><span class="how-arrow" aria-hidden="true">⤳</span><div class="how-step"><span class="step-number">03</span><div><h2>Meet the monster.</h2><p>Watch the whole beautiful mess.</p></div></div></section>
+    </main>
+    <footer class="site-footer"><span>MADE OF INK, PAPER & MISCOMMUNICATION.</span><span>No right answers. <span class="footer-hand">Just good monsters.</span></span></footer>
+  </div>
+</body>
+</html>

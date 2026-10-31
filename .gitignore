@@ -1,0 +1,9 @@
+__pycache__/
+.venv/
+.env
+out/
+brief/
+film/
+run.sh
+site/checks/
+site/.taste-skill/

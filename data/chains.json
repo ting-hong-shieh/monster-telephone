@@ -1,0 +1,270 @@
+{
+  "artist": "tinker://93a9f45d-0c85-50fb-a641-e41ec026ffbb:train:0/sampler_weights/artist",
+  "listener": "Qwen/Qwen3.5-4B",
+  "chains": [
+    {
+      "start": "a bat with too many teeth",
+      "steps": [
+        {
+          "kind": "whisper",
+          "text": "a bat with too many teeth"
+        },
+        {
+          "kind": "drawing",
+          "svg": "<svg viewBox=\"0 0 256 256\" fill=\"none\" stroke=\"black\" stroke-width=\"3\"><path d=\"M128 40 L80 10 L60 80\"/><path d=\"M128 40 L176 10 L196 80\"/><path d=\"M128 40 L128 120\"/><path d=\"M80 10 L128 40\"/><path d=\"M80 10 L60 80\"/><path d=\"M176 10 L128 40\"/><path d=\"M176 10 L196 80\"/><path d=\"M128 120 L100 200\"/><path d=\"M128 120 L156 200\"/><path d=\"M80 10 L50 40 L90 45\"/><path d=\"M176 10 L206 40 L166 45\"/><path d=\"M110 50 L110 60 L120 55\"/><path d=\"M146 50 L146 60 L136 55\"/></svg>"
+        },
+        {
+          "kind": "whisper",
+          "text": "A two-headed dragon with a giant tail and a third leg growing from its spine."
+        },
+        {
+          "kind": "drawing",
+          "svg": "<svg viewBox=\"0 0 256 256\" fill=\"none\" stroke=\"black\" stroke-width=\"3\"><path d=\"M 80 120 Q 80 60 140 60 Q 180 60 180 120 Q 180 180 140 180 Q 80 180 80 120\"/><path d=\"M 80 120 Q 60 120 60 160 Q 60 200 80 200\"/><path d=\"M 180 120 Q 200 120 200 80 Q 200 40 180 40\"/><path d=\"M 140 60 L 140 30 L 130 30\"/><path d=\"M 80 120 L 50 90 L 40 90\"/><path d=\"M 140 130 Q 140 100 160 90\"/><path d=\"M 140 130 Q 140 100 120 90\"/><path d=\"M 180 120 Q 220 100 230 130 Q 240 160 220 170\"/><path d=\"M 230 130 L 230 160\"/><path d=\"M 220 170 Q 240 180 245 160\"/><path d=\"M 140 80 Q 170 90 170 120\"/><path d=\"M 140 130 Q 170 140 170 110\"/><path d=\"M 170 90 Q 180 80 190 90\"/><path d=\"M 170 110 Q 180 100 190 110\"/></svg>"
+        },
+        {
+          "kind": "whisper",
+          "text": "A four-armed cat with a long tail and extra legs."
+        },
+        {
+          "kind": "drawing",
+          "svg": "<svg viewBox=\"0 0 256 256\" fill=\"none\" stroke=\"black\" stroke-width=\"3\"><path d=\"M128 80 C100 80 80 100 80 130 C80 160 100 180 128 180 C156 180 176 160 176 130 C176 100 156 80 128 80\"/><path d=\"M128 180 L128 220 L100 240\"/><path d=\"M128 180 L128 220 L156 240\"/><path d=\"M128 180 L90 200\"/><path d=\"M128 180 L166 200\"/><path d=\"M118 120 C118 110 138 110 138 120\"/><path d=\"M118 120 C118 130 138 130 138 120\"/><path d=\"M100 130 C60 130 40 110 40 100 C50 90 70 90 100 100\"/><path d=\"M156 130 C196 130 216 110 216 100 C206 90 186 90 156 100\"/><path d=\"M110 100 C110 90 120 80 130 80 C140 80 150 90 150 100\"/><path d=\"M146 100 C146 90 136 80 126 80 C116 80 106 90 106 100\"/><path d=\"M128 90 L128 110\"/><path d=\"M120 100 L100 70\"/><path d=\"M136 100 L160 70\"/></svg>"
+        },
+        {
+          "kind": "whisper",
+          "text": "A flying dog with a tail at its head and feet at its back."
+        }
+      ]
+    },
+    {
+      "start": "a ghost wearing a tiny crown",
+      "steps": [
+        {
+          "kind": "whisper",
+          "text": "a ghost wearing a tiny crown"
+        },
+        {
+          "kind": "drawing",
+          "svg": "<svg viewBox=\"0 0 256 256\" fill=\"none\" stroke=\"black\" stroke-width=\"3\"><path d=\"M128 128 C128 128 128 40 128 40 C128 40 145 40 145 40 C162 40 175 60 175 85 C175 105 155 120 128 120 C101 120 81 105 81 85 C81 60 94 40 111 40 C111 40 128 40 128 40\"/><path d=\"M128 120 L128 160\"/><path d=\"M128 160 L100 200\"/><path d=\"M128 160 L156 200\"/><path d=\"M128 40 L115 20 L128 35 L141 20 L128 40\"/><path d=\"M128 40 L115 20 L105 10 L95 20 L105 35 L128 40\"/><path d=\"M105 10 L115 20\"/><path d=\"M141 20 L151 10\"/><path d=\"M110 60 A 10 10 0 1 1 110 61\"/><path d=\"M146 60 A 10 10 0 1 1 146 61\"/><path d=\"M115 75 Q 128 85 141 75\"/><path d=\"M95 50 Q 85 35 75 45\"/><path d=\"M161 50 Q 171 35 181 45\"/></svg>"
+        },
+        {
+          "kind": "whisper",
+          "text": "A crowned human face with extra arms growing from its sides."
+        },
+        {
+          "kind": "drawing",
+          "svg": "<svg viewBox=\"0 0 256 256\" fill=\"none\" stroke=\"black\" stroke-width=\"3\"><path d=\"M128 40 L110 10 L90 30 L128 35 L166 30 L146 10 Z\"/><path d=\"M80 120 Q128 160 176 120 Q180 90 172 80 Q160 72 128 72 Q96 72 84 80 Q76 90 80 120\"/><path d=\"M112 90 A 5 5 0 1 1 111.9 90.01 Z M144 90 A 5 5 0 1 1 143.9 90.01 Z\"/><path d=\"M115 105 Q128 115 141 105\"/><path d=\"M100 125 Q90 135 85 130 Q80 125 85 120 Q90 115 100 125\"/><path d=\"M156 125 Q166 135 171 130 Q176 125 171 120 Q166 115 156 125\"/><path d=\"M110 130 Q80 140 70 160 Q65 170 75 175 Q85 180 90 170\"/><path d=\"M75 165 Q60 155 50 145 Q45 140 55 135\"/><path d=\"M146 130 Q176 140 186 160 Q191 170 181 175 Q171 180 166 170\"/><path d=\"M181 165 Q196 155 206 145 Q211 140 201 135\"/><path d=\"M128 160 L128 200\"/><path d=\"M128 200 Q128 210 118 210 M128 200 Q128 210 138 210\"/><path d=\"M128 160 Q110 170 100 190 Q95 200 100 205\"/><path d=\"M128 160 Q146 170 156 190 Q161 200 156 205\"/></svg>"
+        },
+        {
+          "kind": "whisper",
+          "text": "A helmeted creature with a prominent face and large, staring eyes."
+        },
+        {
+          "kind": "drawing",
+          "svg": "<svg viewBox=\"0 0 256 256\" fill=\"none\" stroke=\"black\" stroke-width=\"3\"><path d=\"M128 40 C160 40 190 70 190 110 C190 160 150 200 128 200 C106 200 66 160 66 110 C66 70 96 40 128 40 Z\"/><path d=\"M128 40 L128 200\"/><path d=\"M128 60 L128 180\"/><path d=\"M128 100 L150 130 L128 150\"/><path d=\"M128 100 L106 130 L128 150\"/><path d=\"M90 120 L166 120\"/><path d=\"M100 110 L115 140\"/><path d=\"M156 110 L141 140\"/><path d=\"M105 110 L105 145 L115 145 L115 110\"/><path d=\"M151 110 L151 145 L141 145 L141 110\"/><path d=\"M110 115 L110 140 L115 140 L115 115\"/><path d=\"M146 115 L146 140 L141 140 L141 115\"/><path d=\"M100 130 L100 150 L110 150 L110 130\"/><path d=\"M156 130 L156 150 L146 150 L146 130\"/></svg>"
+        },
+        {
+          "kind": "whisper",
+          "text": "A spider with a vertical tail dangling from its head."
+        }
+      ]
+    },
+    {
+      "start": "a teapot with human feet",
+      "steps": [
+        {
+          "kind": "whisper",
+          "text": "a teapot with human feet"
+        },
+        {
+          "kind": "drawing",
+          "svg": "<svg viewBox=\"0 0 256 256\" fill=\"none\" stroke=\"black\" stroke-width=\"3\"><path d=\"M 80 100 C 80 60, 176 60, 176 100 Z\"/><path d=\"M 176 90 C 190 90, 195 100, 185 110 C 175 120, 165 100, 165 100\"/><path d=\"M 80 100 C 50 100, 40 120, 60 130 C 70 135, 85 110, 85 110\"/><path d=\"M 128 100 C 128 140, 140 160, 140 180\"/><path d=\"M 128 180 C 128 190, 135 195, 140 190 C 145 185, 140 180, 140 180\"/><path d=\"M 140 180 C 150 190, 160 185, 155 175\"/><path d=\"M 155 175 C 165 180, 175 170, 170 160\"/><path d=\"M 170 160 C 180 150, 185 170, 175 180\"/><path d=\"M 175 180 C 185 190, 195 185, 190 175\"/><path d=\"M 140 100 C 145 110, 150 120, 145 130\"/><path d=\"M 140 100 C 135 110, 130 120, 135 130\"/><path d=\"M 140 100 C 145 110, 150 120, 145 130\"/><path d=\"M 140 100 C 135 110, 130 120, 135 130\"/><path d=\"M 40 60 C 30 40, 50 30, 60 50 C 50 40, 60 30, 60 50\"/></svg>"
+        },
+        {
+          "kind": "whisper",
+          "text": "A stick figure with a large egg-shaped head and a floating body."
+        },
+        {
+          "kind": "drawing",
+          "svg": "<svg viewBox=\"0 0 256 256\" fill=\"none\" stroke=\"black\" stroke-width=\"3\"><path d=\"M128 20 C110 20, 90 40, 90 60 C90 80, 105 100, 128 100 C151 100, 166 80, 166 60 C166 40, 146 20, 128 20 Z\"/><path d=\"M128 100 Q100 110, 90 140 Q80 170, 90 200\"/><path d=\"M128 100 Q156 110, 166 140 Q176 170, 166 200\"/><path d=\"M128 100 L128 180\"/><path d=\"M128 180 L140 220\"/><path d=\"M128 180 L116 220\"/><path d=\"M128 110 Q128 130, 118 145\"/><path d=\"M128 110 Q128 130, 138 145\"/><path d=\"M128 180 L128 190\"/><path d=\"M128 190 Q118 200, 108 210\"/><path d=\"M128 190 Q138 200, 148 210\"/><path d=\"M115 50 Q115 40, 125 40\"/><path d=\"M141 50 Q141 40, 151 40\"/><path d=\"M112 65 Q128 75, 144 65\"/></svg>"
+        },
+        {
+          "kind": "whisper",
+          "text": "A bird with a human-like trunk growing from its neck."
+        },
+        {
+          "kind": "drawing",
+          "svg": "<svg viewBox=\"0 0 256 256\" fill=\"none\" stroke=\"black\" stroke-width=\"3\"><path d=\"M128 40 C140 20, 170 20, 180 40 C190 60, 170 80, 150 80 C130 80, 110 60, 120 40 Z\"/><path d=\"M120 40 C110 20, 90 20, 80 40 C70 60, 90 80, 110 80 C130 80, 150 60, 140 40 Z\"/><path d=\"M140 45 L160 15 L180 35\"/><path d=\"M140 45 L150 10 L170 30\"/><path d=\"M130 55 C140 60, 145 70, 140 80 C135 90, 125 90, 120 80 C115 70, 120 60, 130 55 Z\"/><path d=\"M140 40 C145 35, 155 35, 160 40 C165 45, 165 55, 160 60 C155 65, 145 65, 140 60 C135 55, 135 45, 140 40 Z\"/><path d=\"M130 65 Q140 75 150 65\"/><path d=\"M150 65 Q160 75 170 65\"/><path d=\"M140 50 Q150 45 160 50 Q150 55 140 50 Z\"/><path d=\"M145 52 L155 52\"/><path d=\"M150 65 L160 80 L170 60\"/><path d=\"M170 60 C180 50, 190 60, 180 70 C170 80, 160 70, 170 60 Z\"/><path d=\"M175 65 C175 65, 170 60, 175 55\"/><path d=\"M165 75 Q170 85 180 75\"/></svg>"
+        },
+        {
+          "kind": "whisper",
+          "text": "A faceless creature wearing a crown, with a mouth that is missing."
+        }
+      ]
+    },
+    {
+      "start": "a skeleton holding a telephone",
+      "steps": [
+        {
+          "kind": "whisper",
+          "text": "a skeleton holding a telephone"
+        },
+        {
+          "kind": "drawing",
+          "svg": "<svg viewBox=\"0 0 256 256\" fill=\"none\" stroke=\"black\" stroke-width=\"3\"><path d=\"M110 120 Q128 90 146 120 Q146 160 128 160 Q110 160 110 120\"/><path d=\"M90 120 L90 180 Q90 200 100 210 L166 210 Q176 200 176 180 L176 120\"/><path d=\"M105 120 L105 90 L151 90 L151 120\"/><path d=\"M105 90 C80 90 60 110 60 130 C60 150 80 160 105 160\"/><path d=\"M151 90 C176 90 196 110 196 130 C196 150 176 160 151 160\"/><path d=\"M128 180 L115 220 M128 180 L141 220\"/><path d=\"M135 180 C135 180 135 190 135 200\"/><path d=\"M110 130 L100 160 C80 170 70 190 80 200\"/><path d=\"M146 130 L156 160 C176 170 186 190 176 200\"/><path d=\"M135 150 C135 150 135 155 135 160\"/><path d=\"M100 125 Q100 115 110 115\"/><path d=\"M156 125 Q156 115 146 115\"/><path d=\"M130 220 C130 230 140 230 140 220\"/></svg>"
+        },
+        {
+          "kind": "whisper",
+          "text": "A rabbit wearing a top hat and bow tie."
+        },
+        {
+          "kind": "drawing",
+          "svg": "<svg viewBox=\"0 0 256 256\" fill=\"none\" stroke=\"black\" stroke-width=\"3\"><path d=\"M100 80 C 100 60, 100 40, 156 40 C 212 40, 212 60, 212 80 L 212 180 C 212 200, 192 210, 176 210 L 180 230 L 184 215 L 188 230 L 192 210 C 176 210, 156 200, 156 180 Z\"/><path d=\"M128 60 L 128 80\"/><path d=\"M128 80 L 100 100\"/><path d=\"M128 80 L 156 100\"/><path d=\"M100 100 C 100 110, 110 110, 110 100\"/><path d=\"M156 100 C 156 110, 166 110, 166 100\"/><path d=\"M110 100 C 110 110, 130 110, 130 110\"/><path d=\"M126 40 L 126 10\"/><path d=\"M100 10 L 90 40\"/><path d=\"M156 10 L 166 40\"/><path d=\"M130 50 L 160 70 L 130 65 Z\"/><path d=\"M130 35 L 130 15\"/><path d=\"M115 15 L 145 15\"/><path d=\"M115 15 L 145 15 L 123 45 L 133 30 L 143 45 L 153 15 L 123 15 Z\"/></svg>"
+        },
+        {
+          "kind": "whisper",
+          "text": "A cat-like creature with a human head and an extra leg."
+        },
+        {
+          "kind": "drawing",
+          "svg": "<svg viewBox=\"0 0 256 256\" fill=\"none\" stroke=\"black\" stroke-width=\"3\"><path d=\"M 128 100 L 128 200 M 128 100 L 90 160 M 128 100 L 166 160\"/><path d=\"M 100 100 A 28 28 0 1 0 100 156 A 28 28 0 1 0 100 100\"/><path d=\"M 156 100 A 28 28 0 1 0 156 156 A 28 28 0 1 0 156 100\"/><path d=\"M 100 100 L 115 100 L 120 115\"/><path d=\"M 156 100 L 141 100 L 136 115\"/><path d=\"M 115 100 L 115 85 L 125 85 L 125 100\"/><path d=\"M 141 100 L 141 85 L 151 85 L 151 100\"/><path d=\"M 128 85 L 128 65 L 118 65 L 118 85\"/><path d=\"M 128 85 L 128 65 L 138 65 L 138 85\"/><path d=\"M 128 65 L 120 55 L 128 50 L 128 65\"/><path d=\"M 128 65 L 136 55 L 128 50 L 128 65\"/><path d=\"M 128 65 L 125 55 L 128 50 L 128 65\"/><path d=\"M 128 65 L 131 55 L 128 50 L 128 65\"/><path d=\"M 180 120 L 210 130 L 220 100 L 240 110 L 240 180 L 180 200 L 170 170 L 180 140\"/></svg>"
+        },
+        {
+          "kind": "whisper",
+          "text": "A stick figure creature with three heads that are all round."
+        }
+      ]
+    },
+    {
+      "start": "a cat with a second head",
+      "steps": [
+        {
+          "kind": "whisper",
+          "text": "a cat with a second head"
+        },
+        {
+          "kind": "drawing",
+          "svg": "<svg viewBox=\"0 0 256 256\" fill=\"none\" stroke=\"black\" stroke-width=\"3\"><path d=\"M128,40 C100,40 90,70 90,100 C90,130 100,160 128,160 C156,160 166,130 166,100 C166,70 156,40 128,40\"/><path d=\"M90,100 C70,100 60,120 60,140 C60,160 80,180 100,180\"/><path d=\"M166,100 C186,100 196,120 196,140 C196,160 176,180 156,180\"/><path d=\"M80,110 L60,110 L60,130\"/><path d=\"M176,110 L196,110 L196,130\"/><path d=\"M128,160 L128,200\"/><path d=\"M100,200 L100,230\"/><path d=\"M156,200 L156,230\"/><path d=\"M80,100 L60,100 L60,120\"/><path d=\"M176,100 L196,100 L196,120\"/><path d=\"M110,120 L110,100 L120,100 L120,120\"/><path d=\"M146,120 L146,100 L136,100 L136,120\"/><path d=\"M115,130 L125,130 L125,140 L115,140 Z\"/><path d=\"M141,130 L151,130 L151,140 L141,140 Z\"/></svg>"
+        },
+        {
+          "kind": "whisper",
+          "text": "A headless eagle with wings spread and long legs."
+        },
+        {
+          "kind": "drawing",
+          "svg": "<svg viewBox=\"0 0 256 256\" fill=\"none\" stroke=\"black\" stroke-width=\"3\"><path d=\"M 80 120 Q 80 90 128 90 Q 176 90 176 120 Q 176 150 128 150 Q 80 150 80 120\"/><path d=\"M 80 110 Q 40 60 10 90 Q 30 130 80 120\"/><path d=\"M 176 110 Q 220 60 246 90 Q 216 130 176 120\"/><path d=\"M 95 120 Q 70 160 70 200 Q 65 230 95 235\"/><path d=\"M 161 120 Q 186 160 186 200 Q 191 230 161 235\"/><path d=\"M 100 125 L 95 160 L 105 165 L 100 125\"/><path d=\"M 156 125 L 161 160 L 151 165 L 156 125\"/><path d=\"M 115 90 L 115 75 L 125 85 Z\"/><path d=\"M 141 90 L 141 75 L 131 85 Z\"/><path d=\"M 120 100 A 5 5 0 1 1 120 110 A 5 5 0 1 1 120 100\"/><path d=\"M 136 100 A 5 5 0 1 1 136 110 A 5 5 0 1 1 136 100\"/><path d=\"M 128 120 L 128 130\"/><path d=\"M 120 120 L 128 120 L 136 120\"/><path d=\"M 128 130 L 120 130 L 136 130\"/></svg>"
+        },
+        {
+          "kind": "whisper",
+          "text": "A rabbit with a turtle shell, four faces, and floating eyes."
+        },
+        {
+          "kind": "drawing",
+          "svg": "<svg viewBox=\"0 0 256 256\" fill=\"none\" stroke=\"black\" stroke-width=\"3\"><path d=\"M128 120 C128 100, 140 80, 140 60 C140 40, 150 40, 150 20 C150 10, 145 10, 145 20 C145 40, 155 60, 155 80 C155 100, 128 120, 128 120 Z\"/><path d=\"M128 120 L128 180 C128 200, 100 220, 100 230\"/><path d=\"M128 180 L128 230 C128 240, 140 240, 140 230\"/><path d=\"M128 120 L128 180\"/><path d=\"M128 180 C118 180, 110 188, 110 198\"/><path d=\"M128 180 C138 180, 146 188, 146 198\"/><path d=\"M128 180 C128 195, 115 205, 115 215\"/><path d=\"M128 180 C128 195, 141 205, 141 215\"/><path d=\"M120 50 L120 40 C120 30, 130 30, 130 40\"/><path d=\"M136 50 L136 40 C136 30, 146 30, 146 40\"/><path d=\"M125 55 Q125 60 120 60\"/><path d=\"M131 55 Q131 60 136 60\"/><path d=\"M120 20 C115 15, 110 20, 110 25\"/><path d=\"M146 20 C151 15, 156 20, 156 25\"/></svg>"
+        },
+        {
+          "kind": "whisper",
+          "text": "A shark-like creature with a single eye on top of its head."
+        }
+      ]
+    },
+    {
+      "start": "an owl afraid of its own shadow",
+      "steps": [
+        {
+          "kind": "whisper",
+          "text": "an owl afraid of its own shadow"
+        },
+        {
+          "kind": "drawing",
+          "svg": "<svg viewBox=\"0 0 256 256\" fill=\"none\" stroke=\"black\" stroke-width=\"3\"><path d=\"M 80 140 Q 80 100 128 100 Q 176 100 176 140 Q 176 180 128 180 Q 80 180 80 140 Z\"/><path d=\"M 100 120 A 10 10 0 1 1 120 120 A 10 10 0 1 1 100 120\"/><path d=\"M 136 120 A 10 10 0 1 1 156 120 A 10 10 0 1 1 136 120\"/><path d=\"M 115 128 Q 120 135 128 128 Q 136 135 141 128\"/><path d=\"M 105 90 Q 100 60 130 60 Q 140 60 140 70\"/><path d=\"M 151 90 Q 156 60 126 60 Q 116 60 116 70\"/><path d=\"M 120 140 L 120 160 M 136 140 L 136 160 M 120 160 L 110 170 M 136 160 L 146 170\"/><path d=\"M 170 120 Q 190 120 180 140 Q 170 160 190 150\"/><path d=\"M 190 150 L 200 145 L 195 155\"/><path d=\"M 185 155 L 195 165 L 180 160\"/><path d=\"M 180 150 Q 175 140 185 130\"/><path d=\"M 175 145 Q 170 135 180 125\"/><path d=\"M 185 140 Q 180 130 190 120\"/><path d=\"M 190 135 Q 185 125 195 115\"/></svg>"
+        },
+        {
+          "kind": "whisper",
+          "text": "A round creature with a smiling face and a tangled, spiky tail."
+        },
+        {
+          "kind": "drawing",
+          "svg": "<svg viewBox=\"0 0 256 256\" fill=\"none\" stroke=\"black\" stroke-width=\"3\"><path d=\"M128 30 C100 30, 70 50, 70 90 C70 130, 100 150, 128 150 C156 150, 186 130, 186 90 C186 50, 156 30, 128 30 Z\"/><path d=\"M100 70 C100 65, 110 65, 110 70 C110 75, 100 75, 100 70 Z\"/><path d=\"M156 70 C156 65, 166 65, 166 70 C166 75, 156 75, 156 70 Z\"/><path d=\"M110 90 C128 105, 146 90, 146 90 C146 90, 156 95, 156 95 C156 95, 146 100, 128 100 C110 100, 100 95, 100 95 C100 95, 110 90, 110 90 Z\"/><path d=\"M90 130 C80 140, 60 140, 50 150\"/><path d=\"M166 130 C176 140, 196 140, 206 150\"/><path d=\"M128 150 C128 160, 118 165, 108 160\"/><path d=\"M128 150 C128 160, 138 165, 148 160\"/><path d=\"M128 150 C128 160, 128 165, 128 160\"/><path d=\"M128 150 C128 160, 138 165, 148 160\"/><path d=\"M128 150 C128 160, 118 165, 108 160\"/><path d=\"M128 150 C128 160, 138 165, 148 160\"/><path d=\"M128 150 C128 160, 118 165, 108 160\"/><path d=\"M128 150 C128 160, 118 165, 108 160\"/></svg>"
+        },
+        {
+          "kind": "whisper",
+          "text": "A faceless circular monster with strange multiple eyes."
+        },
+        {
+          "kind": "drawing",
+          "svg": "<svg viewBox=\"0 0 256 256\" fill=\"none\" stroke=\"black\" stroke-width=\"3\"><path d=\"M128 30 C 170 30, 200 80, 200 140 C 200 190, 160 210, 128 210 C 96 210, 56 190, 56 140 C 56 80, 86 30, 128 30 Z\"/><path d=\"M128 30 C 128 30, 128 10, 128 10\"/><path d=\"M75 100 C 75 95, 85 90, 90 95 C 95 100, 85 110, 75 105 Z\"/><path d=\"M181 100 C 181 95, 191 90, 196 95 C 201 100, 191 110, 181 105 Z\"/><path d=\"M110 140 C 115 145, 110 155, 105 150 Z\"/><path d=\"M146 140 C 141 145, 146 155, 151 150 Z\"/><path d=\"M128 170 C 128 180, 135 190, 128 200\"/><path d=\"M115 195 C 115 205, 141 205, 141 195\"/><path d=\"M80 130 C 70 120, 90 120, 100 130 Z\"/><path d=\"M176 130 C 186 120, 166 120, 156 130 Z\"/><path d=\"M128 40 C 128 20, 160 20, 160 40\"/><path d=\"M128 40 C 128 20, 96 20, 96 40\"/><path d=\"M100 50 C 90 40, 110 40, 100 50\"/><path d=\"M156 50 C 166 40, 146 40, 156 50\"/></svg>"
+        },
+        {
+          "kind": "whisper",
+          "text": "A fish with a double tail that oddly grows upward."
+        }
+      ]
+    },
+    {
+      "start": "a pumpkin eating a sock",
+      "steps": [
+        {
+          "kind": "whisper",
+          "text": "a pumpkin eating a sock"
+        },
+        {
+          "kind": "drawing",
+          "svg": "<svg viewBox=\"0 0 256 256\" fill=\"none\" stroke=\"black\" stroke-width=\"3\"><path d=\"M 70 120 Q 128 40 186 120 Q 220 120 210 160 Q 170 190 128 180 Q 86 190 46 160 Q 36 120 70 120 Z\"/><path d=\"M 128 80 L 128 140\"/><path d=\"M 100 90 L 156 90\"/><path d=\"M 128 140 Q 140 160 128 170 Q 116 160 128 140 Z\"/><path d=\"M 128 140 Q 160 130 170 110 Q 150 100 140 110\"/><path d=\"M 170 110 Q 180 100 190 110 L 180 120\"/><path d=\"M 190 110 Q 200 100 210 110 L 200 120\"/><path d=\"M 180 120 L 200 120\"/><path d=\"M 170 130 Q 190 140 210 130\"/><path d=\"M 100 110 L 80 100\"/><path d=\"M 80 100 L 60 110\"/><path d=\"M 60 110 L 80 120\"/><path d=\"M 128 170 Q 110 190 100 210\"/><path d=\"M 128 170 Q 146 190 156 210\"/></svg>"
+        },
+        {
+          "kind": "whisper",
+          "text": "A crowned bear with wings, but its eyes are actually two tiny flags."
+        },
+        {
+          "kind": "drawing",
+          "svg": "<svg viewBox=\"0 0 256 256\" fill=\"none\" stroke=\"black\" stroke-width=\"3\"><path d=\"M 128 40 L 90 10 L 90 20 L 128 35\"/><path d=\"M 128 40 L 166 10 L 166 20 L 128 35\"/><path d=\"M 128 40 L 100 60 L 128 70 L 156 60 Z\"/><path d=\"M 80 100 C 80 60, 176 60, 176 100 C 176 140, 140 160, 128 160 C 116 160, 80 140, 80 100 Z\"/><path d=\"M 100 100 C 60 80, 40 120, 60 140 C 80 120, 100 100, 100 100 Z\"/><path d=\"M 156 100 C 196 80, 216 120, 196 140 C 176 120, 156 100, 156 100 Z\"/><path d=\"M 105 110 L 115 110 M 105 120 L 115 120\"/><path d=\"M 141 110 L 151 110 M 141 120 L 151 120\"/><path d=\"M 105 110 L 105 120 M 115 110 L 115 120 M 141 110 L 141 120 M 151 110 L 151 120\"/><path d=\"M 110 115 L 110 118 M 146 115 L 146 118\"/><path d=\"M 110 118 L 110 120 M 146 118 L 146 120\"/><path d=\"M 128 160 L 128 190\"/><path d=\"M 90 150 L 70 170 M 166 150 L 186 170\"/></svg>"
+        },
+        {
+          "kind": "whisper",
+          "text": "A small alien with a flat head and wide, vertical eyes."
+        },
+        {
+          "kind": "drawing",
+          "svg": "<svg viewBox=\"0 0 256 256\" fill=\"none\" stroke=\"black\" stroke-width=\"3\"><path d=\"M 80 200 L 80 120 L 80 80 L 176 80 L 176 120 L 176 200 Z\"/><path d=\"M 60 80 L 196 80\"/><path d=\"M 70 80 L 70 40 L 186 40 L 186 80\"/><path d=\"M 90 40 L 166 40\"/><path d=\"M 110 40 L 110 20 L 146 20 L 146 40\"/><path d=\"M 110 75 A 10 10 0 1 0 130 75 A 10 10 0 1 0 110 75\"/><path d=\"M 126 75 A 10 10 0 1 0 146 75 A 10 10 0 1 0 126 75\"/><path d=\"M 105 60 Q 115 65 105 70\"/><path d=\"M 131 60 Q 141 65 131 70\"/><path d=\"M 90 110 A 15 15 0 1 0 120 110 A 15 15 0 1 0 90 110\"/><path d=\"M 105 100 L 105 90 M 115 100 L 115 90 M 100 115 L 120 115\"/><path d=\"M 136 110 L 136 100 M 146 110 L 146 90 M 141 115 L 161 115\"/></svg>"
+        },
+        {
+          "kind": "whisper",
+          "text": "A four-eyed alien insect sitting inside a window frame."
+        }
+      ]
+    },
+    {
+      "start": "a very polite vampire",
+      "steps": [
+        {
+          "kind": "whisper",
+          "text": "a very polite vampire"
+        },
+        {
+          "kind": "drawing",
+          "svg": "<svg viewBox=\"0 0 256 256\" fill=\"none\" stroke=\"black\" stroke-width=\"3\"><path d=\"M128 32 C 128 32, 100 32, 80 60 C 70 80, 70 120, 70 160 L 70 220 C 70 230, 80 240, 90 240 L 166 240 C 176 240, 186 230, 186 220 L 186 160 C 186 120, 186 80, 176 60 C 156 32, 128 32, 128 32 Z\"/><path d=\"M100 60 C 60 40, 40 80, 60 120 C 70 110, 80 100, 90 90\"/><path d=\"M156 60 C 196 40, 216 80, 196 120 C 186 110, 176 100, 166 90\"/><path d=\"M100 90 L 110 110\"/><path d=\"M156 90 L 146 110\"/><path d=\"M100 90 L 110 70\"/><path d=\"M156 90 L 146 70\"/><path d=\"M118 110 L 118 130\"/><path d=\"M138 110 L 138 130\"/><path d=\"M118 150 L 138 150\"/><path d=\"M118 170 C 118 180, 138 180, 138 170\"/><path d=\"M100 130 L 128 130\"/><path d=\"M156 130 L 128 130\"/></svg>"
+        },
+        {
+          "kind": "whisper",
+          "text": "A teardrop creature with a floating, floating tail."
+        },
+        {
+          "kind": "drawing",
+          "svg": "<svg viewBox=\"0 0 256 256\" fill=\"none\" stroke=\"black\" stroke-width=\"3\"><path d=\"M128 40 C100 40, 80 70, 80 100 C80 130, 100 140, 128 140 C156 140, 176 130, 176 100 C176 70, 156 40, 128 40 Z\"/><path d=\"M128 140 C128 160, 110 170, 90 170 C70 170, 60 190, 70 210 C80 230, 100 240, 128 240\"/><path d=\"M128 140 C128 160, 146 170, 166 170 C186 170, 196 190, 186 210 C176 230, 156 240, 128 240\"/><path d=\"M100 120 C90 110, 80 120, 90 130 C100 140, 110 130, 100 120 Z\"/><path d=\"M156 120 C166 110, 176 120, 166 130 C156 140, 146 130, 156 120 Z\"/><path d=\"M110 130 L115 135 M146 130 L151 135\"/><path d=\"M90 170 C80 190, 90 200, 100 190\"/><path d=\"M166 170 C176 190, 166 200, 156 190\"/><path d=\"M128 240 C128 245, 118 250, 108 245\"/><path d=\"M128 240 C128 245, 138 250, 148 245\"/><path d=\"M128 240 C120 248, 115 255, 125 260 C135 265, 145 255, 145 245\"/><path d=\"M128 240 C136 248, 141 255, 131 260 C121 265, 111 255, 111 245\"/><path d=\"M128 240 C128 245, 120 250, 110 245\"/></svg>"
+        },
+        {
+          "kind": "whisper",
+          "text": "A faceless human with a prominent, bulbous chest."
+        },
+        {
+          "kind": "drawing",
+          "svg": "<svg viewBox=\"0 0 256 256\" fill=\"none\" stroke=\"black\" stroke-width=\"3\"><path d=\"M128 30 C128 30 140 30 140 40 C140 50 130 60 128 60 C126 60 116 50 116 40 C116 30 128 30 128 30 Z\"/><path d=\"M128 60 L128 180\"/><path d=\"M128 80 L90 90\"/><path d=\"M128 80 L166 90\"/><path d=\"M128 180 L90 190 M128 180 L166 190 M128 180 L128 210\"/><path d=\"M128 100 C90 100 60 120 60 140 C60 160 80 160 80 140 C80 120 110 100 128 100 Z\"/><path d=\"M128 100 C166 100 196 120 196 140 C196 160 176 160 176 140 C176 120 146 100 128 100 Z\"/><path d=\"M100 130 C100 125 105 125 105 130 C105 135 100 135 100 130 Z\"/><path d=\"M156 130 C156 125 161 125 161 130 C161 135 156 135 156 130 Z\"/><path d=\"M100 155 C100 150 105 150 105 155 C105 160 100 160 100 155 Z\"/><path d=\"M156 155 C156 150 161 150 161 155 C161 160 156 160 156 155 Z\"/><path d=\"M128 180 L110 200 M128 180 L128 205 M128 180 L146 200\"/><path d=\"M115 200 L135 200 M115 205 L135 205\"/></svg>"
+        },
+        {
+          "kind": "whisper",
+          "text": "A small creature with a sun-shaped head, long antennae, and tiny beak marks is odd."
+        }
+      ]
+    }
+  ]
+}
