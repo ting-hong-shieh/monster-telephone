@@ -9,7 +9,7 @@ python3 -m http.server 4173 --directory site
 Open `http://localhost:4173`. No build step is needed.
 
 Watch plays an intact chain from `data/chains.json` in at most 15 seconds.
-That file contains eight recordings: the trained small model draws, and the
+That file contains nine recordings: the trained small model draws, and the
 base small model guesses. The home drawing comes from the same file. Recorded
 words and SVG source are retained unchanged in replay and export data.
 
@@ -21,7 +21,7 @@ paper completes its strokes. Undo removes a stroke. Done is enabled after one
 stroke. The gentle 30 second reminder never submits a drawing. Let a ghost draw
 uses the original whisper for the rescue.
 
-The same-origin backend is not included:
+The backend is in [`../server`](../server). It answers on the same origin locally:
 
 ```text
 POST /api/draw     {"whisper":"…"} → {"svg":"…"}
@@ -65,30 +65,7 @@ motion and holds the reveal until the player starts the flipbook.
 Sound is off by default and starts after a gesture. Optional audio files and cue
 names are described in [data/audio/README.md](data/audio/README.md).
 
-Run the browser checks with the requested local Playwright installation:
-
-```sh
-node site/.taste-skill/verify.cjs
-```
-
-The runner starts its own server on port 4173 and saves reports and screenshots
-in `.taste-skill/game-checks/`. Drawing and guessing checks use mocked HTTP responses. Link sharing is checked
-as hidden without storage. These checks do not verify a deployed backend.
-
 The theatre fills the page. Its show sign is hand-drawn SVG with the same seeded
 line boil as the monsters. Crimson curtains, cool white paper and dark stage
 wings replace the previous editorial palette. Interface text uses self-hosted
 Public Sans; its licence is in `fonts/OFL.txt`.
-
-Design notes, the direction draw, screenshot critiques and browser reports are
-in `.taste-skill/`. Run the taste inspector through its local server wrapper:
-
-```sh
-node site/.taste-skill/inspect.cjs --out .taste-skill/after --allow few-pictures
-```
-
-The picture-floor exception is deliberate: the drawings are the game's actual
-SVG output. Photographs would replace the subject with unrelated imagery.
-The inspector also cannot read the drawn sign as type; its text-only hero
-warnings are assessed against the screenshots. The eight moving elements it
-counts exclude the SVG path deformation and ghost poses.

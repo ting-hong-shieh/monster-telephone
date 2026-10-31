@@ -1,0 +1,33 @@
+\documentclass[border=0pt]{standalone}
+\input{figstyle.tex}
+\newlength{\colw}\setlength{\colw}{58mm}
+\newcommand{\cardtext}[4]{%
+  \begin{minipage}[c][17mm][t]{7mm}\vspace{1mm}\centering{\color{#1}\Large #2}\end{minipage}\hspace{1mm}%
+  \begin{minipage}[c][17mm][t]{\dimexpr\colw-14.5mm\relax}\raggedright\hyphenpenalty=10000\exhyphenpenalty=10000
+  \fontsize{12.5}{14.6}\selectfont{\bfseries\color{navy}#3}\par\vspace{.5mm}{\fontsize{11.5}{13.6}\selectfont\color{grey!70!black}#4}\end{minipage}}
+\tikzset{
+  card/.style={draw=#1!55,fill=white,rounded corners=2mm,line width=.5pt,minimum width=\colw-4mm,minimum height=20.5mm,inner sep=1.6mm,anchor=north west},
+  link/.style={-{Latex[length=2mm,width=1.8mm]},line width=1pt,color=grey}}
+\newcommand{\column}[5]{% x, colour, band colour, icon, title
+  \fill[#2!6,rounded corners=3mm] (#1,0) rectangle ++(\colw,-85mm);
+  \fill[#3,rounded corners=3mm] (#1,0) rectangle ++(\colw,-11mm);
+  \node[anchor=west,text=white,font=\fontsize{13.5}{16}\selectfont\bfseries,text height=3.4mm,text depth=.9mm] at ($(#1,-5.5mm)+(3mm,0)$) {#4\hspace{2mm}#5};}
+\begin{document}
+\begin{tikzpicture}
+\column{0mm}{oiblue}{oiblue}{\faGraduationCap}{1\hspace{1.5mm}Train}
+\column{62.5mm}{oiverm}{oiverm!85!black}{\faServer}{2\hspace{1.5mm}Serve}
+\column{125mm}{oigreen}{oigreen!80!black}{\faGamepad}{3\hspace{1.5mm}Play}
+\node[card=oiblue] (a1) at (2mm,-13mm) {\cardtext{oiblue}{\faPen}{Teacher on Tinker}{Qwen3.6-35B draws 1,200 monsters.}};
+\node[card=oiblue] (a2) at (2mm,-37.5mm) {\cardtext{oiblue}{\faFilter}{Strict check}{955 pass and become the training set.}};
+\node[card=oiblue] (a3) at (2mm,-62mm) {\cardtext{oiblue}{\faMagic}{Fine-tune on Tinker}{Qwen3.5-4B, rank 64 LoRA, 180 steps.}};
+\node[card=oiverm] (b1) at (64.5mm,-13mm) {\cardtext{oiverm}{\faKey}{FastAPI on Render}{Keeps the Tinker key. 30 calls a minute.}};
+\node[card=oiverm] (b2) at (64.5mm,-37.5mm) {\cardtext{oiverm}{\faImage}{Drawing to picture}{So the ghost can see each drawing.}};
+\node[card=oiverm] (b3) at (64.5mm,-62mm) {\cardtext{oiverm}{\faGhost}{Two ghosts on Tinker}{The artist and the listener.}};
+\node[card=oigreen] (c1) at (127mm,-13mm) {\cardtext{oigreen}{\faGlobe}{.tech domain}{monstertelephone.tech, DNS on DigitalOcean.}};
+\node[card=oigreen] (c2) at (127mm,-37.5mm) {\cardtext{oigreen}{\faCloud}{Static page}{Free on DigitalOcean App Platform.}};
+\node[card=oigreen] (c3) at (127mm,-62mm) {\cardtext{oigreen}{\faPlay}{Recorded rounds}{Ship with the page. No server needed.}};
+\foreach \p/\q in {a1/a2,a2/a3,b1/b2,b2/b3,c1/c2,c2/c3}{\draw[link] ([yshift=-.8mm]\p.south)--([yshift=.8mm]\q.north);}
+\draw[link] ([yshift=-3mm]a3.east)--([yshift=-3mm]b3.west);
+\draw[link] (c1.west)--(b1.east);
+\end{tikzpicture}
+\end{document}

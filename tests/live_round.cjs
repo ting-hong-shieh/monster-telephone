@@ -1,5 +1,4 @@
-const {createRequire}=require('node:module');
-const {chromium}=createRequire('/home/elias-shieh/projects/personal/prepare-4-quant/')('playwright');
+const {chromium}=require('playwright');
 const fs=require('node:fs');
 const BASE=process.argv[2], OUT=__dirname+'/live', WIDTH=+(process.argv[3]||1440);
 fs.mkdirSync(OUT,{recursive:true});
