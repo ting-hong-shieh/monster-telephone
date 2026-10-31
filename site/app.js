@@ -55,7 +55,7 @@ function updateTurns(index) {
     const item = document.createElement('li'); item.className = i < index ? 'complete' : i === index ? 'active' : '';
     if (i === index) item.setAttribute('aria-current', 'step');
     const number = document.createElement('span'); number.textContent = i < index ? 'Done' : String(i + 1);
-    const name = document.createElement('span'); name.textContent = i === 2 && chain.recorded ? 'Recorded rescue' : turn.name;
+    const name = document.createElement('span'); name.textContent = i === 2 && chain.recorded ? rescueName() : turn.name;
     const kind = document.createElement('span'); kind.className = 'turn-kind'; kind.textContent = i === 2 && !chain.recorded ? 'draw' : turn.kind === 'draw' ? 'draws' : 'guesses';
     item.append(number, name, kind); return item;
   }));
@@ -76,18 +76,20 @@ function prompt(text) {
 }
 function setTurn(i) {
   const turn = turns[i]; updateTurns(i);
-  $('turn-label').textContent = `Turn ${i + 1} of 6. ${i === 2 && chain.recorded ? 'Recorded rescue' : turn.name}`;
+  $('turn-label').textContent = `Turn ${i + 1} of 6. ${i === 2 && chain.recorded ? rescueName() : turn.name}`;
   $('turn-title').innerHTML = i === 2 && chain.recorded ? 'The story<br>drifts again.' : turn.title;
   $('turn-copy').textContent = turn.kind === 'draw' ? 'The whisper is becoming a drawing.' : 'This ghost sees only the drawing.';
   $('rescue-original').hidden = i !== 2 || chain.recorded;
   $('stage-counter').textContent = '';
-  paperLabel(turn.kind === 'draw' ? `${i === 2 && chain.recorded ? 'Recorded rescue' : turn.name} draws` : `${turn.name} guesses`, String(i + 1));
+  paperLabel(turn.kind === 'draw' ? `${i === 2 && chain.recorded ? rescueName() : turn.name} draws` : `${turn.name} guesses`, String(i + 1));
   sound.cue(`narrator-${i + 1}`);
 }
+const rescueName = () => (chain.humanRescue ? 'Recorded rescue' : 'A ghost in your seat');
 async function watchRecorded() {
   if (!data) { announce('The recorded chains are still arriving. Try again in a moment.'); return; }
   const record = data.chains[watchIndex++ % data.chains.length];
   chain = newChain(record.start, true); stepIndex = 0;
+  chain.humanRescue = record.steps[3].by === 'player';
   const generation = ++runGeneration; prepareRound(); showWords(chain.first);
   performance.clearMarks('recorded-start'); performance.clearMeasures('recorded-playback');
   performance.mark('recorded-start');
@@ -103,8 +105,8 @@ async function watchRecorded() {
       const text = i === 0 ? chain.first : record.steps[i].text; prompt(text);
       await motion.ghostAction(turns[i].ghost, 'draw', 300);
       await motion.pageTurn(false, 120);
-      const drawing = showMonster(source.svg, 'Recorded model drawing');
-      chain.steps.push({ kind: 'draw', svg: source.svg, name: i === 2 ? 'Recorded rescue' : turns[i].name });
+      const drawing = showMonster(source.svg, i === 2 && chain.humanRescue ? 'Recorded player drawing' : 'Recorded model drawing');
+      chain.steps.push({ kind: 'draw', svg: source.svg, name: i === 2 ? rescueName() : turns[i].name });
       await motion.strokeOn(drawing, Math.max(200, remaining(i)));
     } else {
       await motion.ghostAction(turns[i].ghost, 'whisper', 300);

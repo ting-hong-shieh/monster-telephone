@@ -28,7 +28,7 @@ POST /api/draw     {"whisper":"…"} → {"svg":"…"}
 POST /api/whisper  {"svg":"…"}     → {"text":"…"}
 ```
 
-The 12 second deadline includes reading the response body. Failed calls stop
+The 20 second deadline includes reading the response body. Failed calls stop
 the round. Retry repeats the failed turn; Watch a recorded chain starts a
 separate recording. Player chains never receive recorded substitute turns.
 Ghosts only see the drawing. SVG rendering keeps direct path children

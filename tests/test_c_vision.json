@@ -1,0 +1,110 @@
+[
+{
+"creature": "crab",
+"guess": "A creature with crab-like claws and a square, boxy body.",
+"own": true,
+"other": 0.0
+},
+{
+"creature": "crab",
+"guess": "A crab with arms giving a thumbs up.",
+"own": true,
+"other": 0.0
+},
+{
+"creature": "crab",
+"guess": "a robot crab with a single antenna.",
+"own": true,
+"other": 0.0
+},
+{
+"creature": "goat",
+"guess": "A creature with a tail, wings, and an odd expression.",
+"own": false,
+"other": 0.0
+},
+{
+"creature": "goat",
+"guess": "A monster with horns and sharp teeth, looking menacing yet cute.",
+"own": false,
+"other": 0.0
+},
+{
+"creature": "goat",
+"guess": "A bat with a fish tail and a goofy expression.",
+"own": false,
+"other": 0.0
+},
+{
+"creature": "lantern",
+"guess": "A gorilla cup with a straw, holding a drink.",
+"own": false,
+"other": 0.0
+},
+{
+"creature": "lantern",
+"guess": "Meerkat with a flat face and a long tail.",
+"own": false,
+"other": 0.0
+},
+{
+"creature": "lantern",
+"guess": "A creature with a lightbulb head and a long tail.",
+"own": false,
+"other": 0.0
+},
+{
+"creature": "moth",
+"guess": "A bird with a human face, wearing a hat and holding a stick.",
+"own": false,
+"other": 0.0
+},
+{
+"creature": "moth",
+"guess": "A four-limbed creature with unusually long, curved legs.",
+"own": false,
+"other": 0.0
+},
+{
+"creature": "moth",
+"guess": "A butterfly with a distinctly jagged, uneven wing shape.",
+"own": true,
+"other": 0.0
+},
+{
+"creature": "radio",
+"guess": "a square creature with a long neck and a small head.",
+"own": false,
+"other": 0.0
+},
+{
+"creature": "radio",
+"guess": "A square-headed creature with a stick arm and legs.",
+"own": false,
+"other": 0.0
+},
+{
+"creature": "radio",
+"guess": "Two-legged creature holding a stick.",
+"own": false,
+"other": 0.0
+},
+{
+"creature": "witch",
+"guess": "A whimsical cat with a pirate hat and monocle.",
+"own": false,
+"other": 0.0
+},
+{
+"creature": "witch",
+"guess": "A smiling creature with mismatched earrings.",
+"own": false,
+"other": 0.0
+},
+{
+"creature": "witch",
+"guess": "A line drawing of a creature with a hat and stick legs.",
+"own": false,
+"other": 0.0
+}
+]

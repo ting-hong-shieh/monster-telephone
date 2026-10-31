@@ -1,0 +1,164 @@
+[
+{
+"creature": "moth",
+"guess": "A tall, slender humanoid with a very long neck.",
+"own": false,
+"other": 0.0,
+"status": 200,
+"raw_status": 422,
+"k": 2
+},
+{
+"creature": "moth",
+"guess": "A tree with a human-like face growing out of its trunk.",
+"own": false,
+"other": 0.0,
+"status": 200,
+"raw_status": 422,
+"k": 2
+},
+{
+"creature": "moth",
+"guess": "A tall, slender stick figure with a bubbling, unstable head.",
+"own": false,
+"other": 0.0,
+"status": 200,
+"raw_status": 422,
+"k": 2
+},
+{
+"creature": "goat",
+"guess": "A multilimbed monster with many eyes and a long tail.",
+"own": false,
+"other": 0.0,
+"status": 200,
+"raw_status": 422,
+"k": 3
+},
+{
+"creature": "goat",
+"guess": "A ten-legged spider with an extra trunk-like leg.",
+"own": false,
+"other": 0.0,
+"status": 200,
+"raw_status": 422,
+"k": 3
+},
+{
+"creature": "goat",
+"guess": "A heavy, segmented caterpillar with multiple long, thin necks.",
+"own": false,
+"other": 0.0,
+"status": 200,
+"raw_status": 422,
+"k": 3
+},
+{
+"creature": "lantern",
+"guess": "A human walking inside a green tree trunk.",
+"own": false,
+"other": 0.0,
+"status": 200,
+"raw_status": 200,
+"k": 1
+},
+{
+"creature": "lantern",
+"guess": "A human head with a whale tail.",
+"own": false,
+"other": 0.0,
+"status": 200,
+"raw_status": 200,
+"k": 1
+},
+{
+"creature": "lantern",
+"guess": "A giraffe with its legs fused into a single tail.",
+"own": false,
+"other": 0.0,
+"status": 200,
+"raw_status": 200,
+"k": 1
+},
+{
+"creature": "witch",
+"guess": "A faceless face that is staring at the viewer.",
+"own": false,
+"other": 0.0,
+"status": 200,
+"raw_status": 422,
+"k": 2
+},
+{
+"creature": "witch",
+"guess": "A stick figure creature wearing a hat that defies gravity.",
+"own": false,
+"other": 0.0,
+"status": 200,
+"raw_status": 422,
+"k": 2
+},
+{
+"creature": "witch",
+"guess": "A spider with a human face, legs, and hands fused together.",
+"own": false,
+"other": 0.0,
+"status": 200,
+"raw_status": 422,
+"k": 2
+},
+{
+"creature": "crab",
+"guess": "A cat with a detached rat tail and a faceless torso.",
+"own": false,
+"other": 0.0,
+"status": 200,
+"raw_status": 422,
+"k": 3
+},
+{
+"creature": "crab",
+"guess": "A stick figure creature with multiple robotic arms.",
+"own": false,
+"other": 0.0,
+"status": 200,
+"raw_status": 422,
+"k": 3
+},
+{
+"creature": "crab",
+"guess": "A gecko with long, lanky legs and an unusually elongated neck.",
+"own": false,
+"other": 0.0,
+"status": 200,
+"raw_status": 422,
+"k": 3
+},
+{
+"creature": "radio",
+"guess": "A snake with a human torso and a male facial expression.",
+"own": false,
+"other": 0.0,
+"status": 200,
+"raw_status": 200,
+"k": 1
+},
+{
+"creature": "radio",
+"guess": "A line drawing of a tall, thin, single-eyed robot with a jagged head.",
+"own": false,
+"other": 0.0,
+"status": 200,
+"raw_status": 200,
+"k": 1
+},
+{
+"creature": "radio",
+"guess": "A tentacled robot with a human body and a blocky head.",
+"own": false,
+"other": 0.0,
+"status": 200,
+"raw_status": 200,
+"k": 1
+}
+]

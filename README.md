@@ -25,9 +25,15 @@ Evaluation used 60 prompts about six creatures absent from training, sampled twi
 | Qwen3.5-4B, fine-tuned | 117 / 120 | 591 | 4.02 |
 | Qwen3.6-35B | 92 / 120 | 830 | 5.38 |
 
-Valid means the output parses, holds 3 to 14 unfilled paths, and stays within the canvas. It does not mean the drawing looks like the prompt, which this evaluation does not measure. The seconds come from batched sampling and are rough.
+Valid means the output parses, holds 3 to 14 unfilled paths, and stays within the canvas, inside a limit of 1,100 tokens. Most runs that failed for the first model hit that limit or broke the check. The seconds come from batched sampling and are rough.
 
-The training set, held-out prompts, results and recorded chains are in `data/`.
+Valid does not mean the drawing looks like the prompt. In a blind test, one rater named the creature from six choices for 2 of 30 fine-tuned drawings, 7 of 30 teacher drawings and 1 of 29 base drawings. Chance is about 5 of 30.
+
+## Who can read a drawing
+
+The listener first read SVG text. It named the right creature in 0 of 72 guesses. Reading a picture, it scored 0 of 54 on model drawings and 4 of 18 on six drawings by one person. Three of the four hits came from one crab, so this is a direction, not a rate. Rules and raw results are in `tests/`.
+
+The training set, held-out prompts, results and recorded chains are in `data/`. One recorded chain uses a real player drawing. Every other chain has a ghost in the player's seat. Each was recorded once.
 
 ## Run it
 

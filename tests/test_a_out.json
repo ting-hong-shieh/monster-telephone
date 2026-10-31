@@ -1,0 +1,380 @@
+[
+{
+"creature": "moth",
+"guess": "A bird with a long beak that lacks wings.",
+"seconds": 2.47,
+"own": false,
+"other": 0.0
+},
+{
+"creature": "moth",
+"guess": "A human-head silhouette with a snake stem for a neck.",
+"seconds": 2.02,
+"own": false,
+"other": 0.0
+},
+{
+"creature": "moth",
+"guess": "A faceless figure with bird wings and a flat, oval head.",
+"seconds": 2.04,
+"own": false,
+"other": 0.0
+},
+{
+"creature": "moth",
+"guess": "A stylized cat with a flat, triangular head and large ears.",
+"seconds": 2.04,
+"own": false,
+"other": 0.0
+},
+{
+"creature": "moth",
+"guess": "A cat with a square head and an extra leg.",
+"seconds": 2.19,
+"own": false,
+"other": 0.0
+},
+{
+"creature": "moth",
+"guess": "A human head with two extra mouths on the cheek.",
+"seconds": 1.98,
+"own": false,
+"other": 0.0
+},
+{
+"creature": "moth",
+"guess": "A circular head creature with a long, winding neck.",
+"seconds": 2.0,
+"own": false,
+"other": 0.0
+},
+{
+"creature": "moth",
+"guess": "A human-like figure with a giant head and a missing body.",
+"seconds": 2.01,
+"own": false,
+"other": 0.0
+},
+{
+"creature": "moth",
+"guess": "A robot head with antennas, but it has legs instead of a torso.",
+"seconds": 2.05,
+"own": false,
+"other": 0.0
+},
+{
+"creature": "goat",
+"guess": "A smiling fish with a human head and body parts.",
+"seconds": 2.0,
+"own": false,
+"other": 0.0
+},
+{
+"creature": "goat",
+"guess": "A human head wearing a cat mask and standing in a figure-eight pose.",
+"seconds": 2.0,
+"own": false,
+"other": 0.0
+},
+{
+"creature": "goat",
+"guess": "A spider with insect legs and no eyes.",
+"seconds": 2.02,
+"own": false,
+"other": 0.0
+},
+{
+"creature": "goat",
+"guess": "A frog with a human head and floating limbs.",
+"seconds": 2.02,
+"own": false,
+"other": 0.0
+},
+{
+"creature": "goat",
+"guess": "A small house with a face, a tree, and a rabbit.",
+"seconds": 2.06,
+"own": false,
+"other": 0.0
+},
+{
+"creature": "goat",
+"guess": "A smiling face with a horned crown and a long tail.",
+"seconds": 2.18,
+"own": false,
+"other": 0.0
+},
+{
+"creature": "goat",
+"guess": "A waving hat with a snout, but the ears are shaped like clouds.",
+"seconds": 6.06,
+"own": false,
+"other": 0.0
+},
+{
+"creature": "goat",
+"guess": "A cartoon fox with a single, long tail.",
+"seconds": 2.13,
+"own": false,
+"other": 0.0
+},
+{
+"creature": "goat",
+"guess": "A toad with tiny human ears.",
+"seconds": 1.99,
+"own": false,
+"other": 0.0
+},
+{
+"creature": "lantern",
+"guess": "A floating cylindrical creature with no body, just a pole and limbs.",
+"seconds": 2.03,
+"own": false,
+"other": 0.0
+},
+{
+"creature": "lantern",
+"guess": "A beehive frame with an insect head and multiple tiny legs.",
+"seconds": 2.0,
+"own": false,
+"other": 0.0
+},
+{
+"creature": "lantern",
+"guess": "A faceless creature with a trunk mouth and no eyes.",
+"seconds": 2.01,
+"own": false,
+"other": 0.0
+},
+{
+"creature": "lantern",
+"guess": "A human face with a triangular nose and a missing mouth.",
+"seconds": 2.03,
+"own": false,
+"other": 0.0
+},
+{
+"creature": "lantern",
+"guess": "A wizard hat with a face peeking out from under the brim.",
+"seconds": 1.99,
+"own": false,
+"other": 0.2
+},
+{
+"creature": "lantern",
+"guess": "A stick-figure creature with a flagpole for a neck and a flag for a head.",
+"seconds": 2.03,
+"own": false,
+"other": 0.0
+},
+{
+"creature": "lantern",
+"guess": "A flying dog with a human head and a large, round tail.",
+"seconds": 1.99,
+"own": false,
+"other": 0.0
+},
+{
+"creature": "lantern",
+"guess": "A multi-headed dog with an extra tail segment in the back.",
+"seconds": 1.98,
+"own": false,
+"other": 0.0
+},
+{
+"creature": "lantern",
+"guess": "A cartoon monster with a flat body, large head, and unnatural geometric limbs.",
+"seconds": 1.99,
+"own": false,
+"other": 0.0
+},
+{
+"creature": "witch",
+"guess": "A symmetrical frog-like creature with a single vertical tail.",
+"seconds": 2.0,
+"own": false,
+"other": 0.0
+},
+{
+"creature": "witch",
+"guess": "A heart-shaped creature with a long tail and a small round face.",
+"seconds": 2.01,
+"own": false,
+"other": 0.0
+},
+{
+"creature": "witch",
+"guess": "A two-headed bird with a round, plump body and no wings.",
+"seconds": 1.99,
+"own": false,
+"other": 0.0
+},
+{
+"creature": "witch",
+"guess": "A turtle with a human head wearing a crown.",
+"seconds": 4.98,
+"own": false,
+"other": 0.0
+},
+{
+"creature": "witch",
+"guess": "A human head with a fishtail body and a mouth on its back.",
+"seconds": 2.15,
+"own": false,
+"other": 0.0
+},
+{
+"creature": "witch",
+"guess": "A duck with a human elbow and a second head.",
+"seconds": 1.98,
+"own": false,
+"other": 0.0
+},
+{
+"creature": "witch",
+"guess": "A spindly spider with a visible brain inside its head.",
+"seconds": 1.97,
+"own": false,
+"other": 0.0
+},
+{
+"creature": "witch",
+"guess": "A strange cat with a third eyelid and a missing tail.",
+"seconds": 2.02,
+"own": false,
+"other": 0.0
+},
+{
+"creature": "witch",
+"guess": "A robot head with a human body and a skateboard.",
+"seconds": 2.0,
+"own": false,
+"other": 0.0
+},
+{
+"creature": "crab",
+"guess": "A four-armed creature with a triangular body and a strange hat.",
+"seconds": 1.99,
+"own": false,
+"other": 0.0
+},
+{
+"creature": "crab",
+"guess": "A four-eyed frog with a tail that looks like a hat.",
+"seconds": 2.0,
+"own": false,
+"other": 0.0
+},
+{
+"creature": "crab",
+"guess": "A dragon with a face on its back and wings.",
+"seconds": 4.91,
+"own": false,
+"other": 0.0
+},
+{
+"creature": "crab",
+"guess": "A frog with four curved legs and large eyes.",
+"seconds": 2.01,
+"own": false,
+"other": 0.0
+},
+{
+"creature": "crab",
+"guess": "A bird with a face drawn on its back.",
+"seconds": 2.01,
+"own": false,
+"other": 0.0
+},
+{
+"creature": "crab",
+"guess": "A masked robot with a sad, drooping face.",
+"seconds": 2.0,
+"own": false,
+"other": 0.0
+},
+{
+"creature": "crab",
+"guess": "A two-headed monster with a third floating head above.",
+"seconds": 2.01,
+"own": false,
+"other": 0.0
+},
+{
+"creature": "crab",
+"guess": "A smiling face with legs, arms, and a tie.",
+"seconds": 2.01,
+"own": false,
+"other": 0.0
+},
+{
+"creature": "crab",
+"guess": "A symmetrical creature with two circles for eyes and a mouth that is too wide.",
+"seconds": 2.0,
+"own": false,
+"other": 0.0
+},
+{
+"creature": "radio",
+"guess": "A flying duck with tentacles and an upside-down tail.",
+"seconds": 2.06,
+"own": false,
+"other": 0.0
+},
+{
+"creature": "radio",
+"guess": "A two-headed dog with a tail made of a question mark.",
+"seconds": 2.14,
+"own": false,
+"other": 0.0
+},
+{
+"creature": "radio",
+"guess": "A wobbly robot with a top hat and a waddling gait.",
+"seconds": 2.0,
+"own": false,
+"other": 0.0
+},
+{
+"creature": "radio",
+"guess": "A double-headed creature where both heads point upward.",
+"seconds": 2.02,
+"own": false,
+"other": 0.0
+},
+{
+"creature": "radio",
+"guess": "A two-headed bird with legs standing on a box.",
+"seconds": 2.0,
+"own": false,
+"other": 0.0
+},
+{
+"creature": "radio",
+"guess": "A serrated blade transforms into a monstrous snake.",
+"seconds": 2.01,
+"own": false,
+"other": 0.0
+},
+{
+"creature": "radio",
+"guess": "A house-shaped alien with a hockey stick for legs.",
+"seconds": 2.02,
+"own": false,
+"other": 0.0
+},
+{
+"creature": "radio",
+"guess": "A robot with a single eye in the center of its chest.",
+"seconds": 2.0,
+"own": false,
+"other": 0.0
+},
+{
+"creature": "radio",
+"guess": "A four-armed hyena with a round head and a wide muzzle.",
+"seconds": 4.88,
+"own": false,
+"other": 0.0
+}
+]

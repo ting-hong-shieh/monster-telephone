@@ -90,7 +90,7 @@ button:active { transform:translateY(2px) rotate(-.5deg); }
 .ghost-art .eye { fill:var(--ink); stroke:none; }
 .ghost-name { display:block; font-size:var(--small); line-height:1.35; white-space:nowrap; }
 .ghost-name i { display:block; font-style:normal; color:var(--muted); font-size:var(--small); }
-.seat-pip { left:-5%; top:12%; transform:rotate(-8deg); }
+.seat-pip { left:-8%; top:12%; transform:rotate(-8deg); }
 .seat-dot { right:-7%; top:15%; transform:rotate(7deg); }
 .seat-moth { left:0; bottom:0; transform:rotate(-6deg); }
 .seat-hush { right:-4%; bottom:0; transform:rotate(6deg); }

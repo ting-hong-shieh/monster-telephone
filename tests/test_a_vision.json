@@ -1,0 +1,326 @@
+[
+{
+"creature": "moth",
+"guess": "A stick figure blooming like a flower.",
+"own": false,
+"other": 0.0
+},
+{
+"creature": "moth",
+"guess": "A stick-figure woman with a giant tulip on her head.",
+"own": false,
+"other": 0.0
+},
+{
+"creature": "moth",
+"guess": "A dragon with a flower on its head, which is odd because flowers are not typical dragon features.",
+"own": false,
+"other": 0.0
+},
+{
+"creature": "moth",
+"guess": "A stick figure creature with a crown, odd for its simple design.",
+"own": false,
+"other": 0.0
+},
+{
+"creature": "moth",
+"guess": "A bumblebee with two legs and a flower on its head.",
+"own": false,
+"other": 0.0
+},
+{
+"creature": "moth",
+"guess": "A whimsical humanoid creature with glowing eyes and an odd, floating appearance.",
+"own": false,
+"other": 0.0
+},
+{
+"creature": "moth",
+"guess": "A human-made drawing of a smiling stick figure with arms as tentacles.",
+"own": false,
+"other": 0.0
+},
+{
+"creature": "moth",
+"guess": "A humanoid with a long slender neck.",
+"own": false,
+"other": 0.0
+},
+{
+"creature": "moth",
+"guess": "A stick figure with a missing mouth and a strange expression.",
+"own": false,
+"other": 0.0
+},
+{
+"creature": "goat",
+"guess": "A giraffe with a human head that is black and white and static.",
+"own": false,
+"other": 0.0
+},
+{
+"creature": "goat",
+"guess": "Tall necked giraffe, unusual long straight neck.",
+"own": false,
+"other": 0.0
+},
+{
+"creature": "goat",
+"guess": "Strange creature with a single long leg and a flat tail.",
+"own": false,
+"other": 0.0
+},
+{
+"creature": "goat",
+"guess": "A bat with wings that look like they have no bones.",
+"own": false,
+"other": 0.0
+},
+{
+"creature": "goat",
+"guess": "A bird with elephant ears, a whimsical mixed species.",
+"own": false,
+"other": 0.0
+},
+{
+"creature": "goat",
+"guess": "A bear with human legs, an unusual mix of species.",
+"own": false,
+"other": 0.0
+},
+{
+"creature": "goat",
+"guess": "A smiling creature with a wide open mouth.",
+"own": false,
+"other": 0.0
+},
+{
+"creature": "goat",
+"guess": "A cartoon elephant watering flowers with its trunk.",
+"own": false,
+"other": 0.0
+},
+{
+"creature": "goat",
+"guess": "A headless creature with a hat and spray.",
+"own": false,
+"other": 0.0
+},
+{
+"creature": "lantern",
+"guess": "A deer with a long, thin nose.",
+"own": false,
+"other": 0.0
+},
+{
+"creature": "lantern",
+"guess": "A cartoon creature with a long neck and a big head.",
+"own": false,
+"other": 0.0
+},
+{
+"creature": "lantern",
+"guess": "a ghost that is also a toilet",
+"own": false,
+"other": 0.0
+},
+{
+"creature": "lantern",
+"guess": "A skeleton cat with no body, just a head and tail.",
+"own": false,
+"other": 0.0
+},
+{
+"creature": "lantern",
+"guess": "A stick-figure cat holding a bow-tie like object.",
+"own": false,
+"other": 0.0
+},
+{
+"creature": "lantern",
+"guess": "A stick figure with a bow and strange limbs.",
+"own": false,
+"other": 0.0
+},
+{
+"creature": "lantern",
+"guess": "A creature with a bird-like face and a segmented body.",
+"own": false,
+"other": 0.0
+},
+{
+"creature": "lantern",
+"guess": "A light bulb with a face that has an angry expression.",
+"own": false,
+"other": 0.0
+},
+{
+"creature": "lantern",
+"guess": "A two-headed dog with a single tail and no legs.",
+"own": false,
+"other": 0.0
+},
+{
+"creature": "witch",
+"guess": "Rabbit with a human face and strange cross on chest.",
+"own": false,
+"other": 0.0
+},
+{
+"creature": "witch",
+"guess": "ghost with bunny ears and a cross.",
+"own": false,
+"other": 0.0
+},
+{
+"creature": "witch",
+"guess": "A ghostly creature with crooked features and no mouth.",
+"own": false,
+"other": 0.0
+},
+{
+"creature": "witch",
+"guess": "Big basilisk with long legs and a bird head.",
+"own": false,
+"other": 0.0
+},
+{
+"creature": "witch",
+"guess": "A line drawing of a giraffe with only two legs.",
+"own": false,
+"other": 0.0
+},
+{
+"creature": "witch",
+"guess": "Tuxedo bird with an abnormally large head.",
+"own": false,
+"other": 0.0
+},
+{
+"creature": "witch",
+"guess": "fantasy creature with tall hat and odd posture.",
+"own": false,
+"other": 0.0
+},
+{
+"creature": "witch",
+"guess": "A tall man with a child standing on his head.",
+"own": false,
+"other": 0.0
+},
+{
+"creature": "witch",
+"guess": "A cat with four legs and an extra tail.",
+"own": false,
+"other": 0.0
+},
+{
+"creature": "crab",
+"guess": "A chubby dragon with tiny legs and outstretched arms.",
+"own": false,
+"other": 0.0
+},
+{
+"creature": "crab",
+"guess": "A humanoid with an open mouth and no arms.",
+"own": false,
+"other": 0.0
+},
+{
+"creature": "crab",
+"guess": "A winged creature with a tail that looks like a banana peel.",
+"own": false,
+"other": 0.0
+},
+{
+"creature": "crab",
+"guess": "A dog with a human body and a flag on its back.",
+"own": false,
+"other": 0.0
+},
+{
+"creature": "crab",
+"guess": "Two-headed creature with snake-like body and tails.",
+"own": false,
+"other": 0.0
+},
+{
+"creature": "crab",
+"guess": "A creature with arms rest on a column, odd due to its unusual pose.",
+"own": false,
+"other": 0.0
+},
+{
+"creature": "crab",
+"guess": "A humanoid creature with crocodile-like head and crocodile-like tail.",
+"own": false,
+"other": 0.0
+},
+{
+"creature": "crab",
+"guess": "Bipedal creature with an unusual head and arms.",
+"own": false,
+"other": 0.0
+},
+{
+"creature": "crab",
+"guess": "stick creature with no limbs, two heads, and long legs.",
+"own": false,
+"other": 0.0
+},
+{
+"creature": "radio",
+"guess": "a box-headed creature with a face inside, and a tail that looks like lightning.",
+"own": false,
+"other": 0.0
+},
+{
+"creature": "radio",
+"guess": "a creature with a square head, two eyes, a mouth, and four legs.",
+"own": false,
+"other": 0.0
+},
+{
+"creature": "radio",
+"guess": "Cube creature with minus, plus, zero signs on sides.",
+"own": false,
+"other": 0.0
+},
+{
+"creature": "radio",
+"guess": "A creature with a box body, an odd number of legs.",
+"own": false,
+"other": 0.0
+},
+{
+"creature": "radio",
+"guess": "a two-headed dog, or rather, a two-headed Fox fur.",
+"own": false,
+"other": 0.0
+},
+{
+"creature": "radio",
+"guess": "A four-legged creature wearing a hat, with only its head visible.",
+"own": false,
+"other": 0.0
+},
+{
+"creature": "radio",
+"guess": "Strawberry with legs and a cavity in its head.",
+"own": false,
+"other": 0.0
+},
+{
+"creature": "radio",
+"guess": "Balanced creature with two eyes.",
+"own": false,
+"other": 0.0
+},
+{
+"creature": "radio",
+"guess": "A ladybug with a tail on its head.",
+"own": false,
+"other": 0.0
+}
+]
