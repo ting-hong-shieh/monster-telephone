@@ -266,8 +266,8 @@ button:active { transform:translateY(2px) rotate(-.5deg); }
   .playing .turn-list { display:none; }
   .game-layout:has(#result-panel:not([hidden])) { display:grid; grid-template-columns:minmax(0,1fr); }
   .story-column:has(#result-panel:not([hidden])),#result-panel:not([hidden]) { display:contents; }
-  .reveal-summary { background:var(--paper); color:var(--ink); padding:20px; grid-row:1; }
-  .game-layout:has(#result-panel:not([hidden])) .theatre-column { grid-row:2; }
+  .reveal-summary { background:var(--paper); color:var(--ink); padding:20px; grid-row:2; }
+  .game-layout:has(#result-panel:not([hidden])) .theatre-column { grid-row:1; }
   .reveal-details { background:var(--paper); color:var(--ink); padding:20px; grid-row:3; }
   .reveal-details .sample-note,.reveal-details .save-tools:first-child { margin-top:0; }
   .reveal-summary .result-actions { gap:8px; }
