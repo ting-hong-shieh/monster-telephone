@@ -9,10 +9,10 @@ const cast = ['pip', 'dot', 'moth', 'hush', 'wisp'];
 const turns = [
   { name: 'Pip', ghost: 'pip', kind: 'draw', title: 'A monster<br>takes shape.' },
   { name: 'Dot', ghost: 'dot', kind: 'whisper', title: 'It looks<br>like a…' },
-  { name: 'You', ghost: 'pip', kind: 'draw', title: 'Draw it back<br>into the <em>story.</em>' },
-  { name: 'Moth', ghost: 'moth', kind: 'whisper', title: 'Your monster,<br>as Moth sees it.' },
+  { name: 'You', ghost: 'pip', kind: 'draw', title: 'Draw it back' },
+  { name: 'Moth', ghost: 'moth', kind: 'whisper', title: 'Moth’s guess' },
   { name: 'Hush', ghost: 'hush', kind: 'draw', title: 'One more<br>little creature.' },
-  { name: 'Wisp', ghost: 'wisp', kind: 'whisper', title: 'One last<br><em>psst…</em>' }
+  { name: 'Wisp', ghost: 'wisp', kind: 'whisper', title: 'One last guess' }
 ];
 let data, chain, phase = 'idle', stepIndex = 0, pendingResolve, playerResolve;
 let strokes = [], currentStroke = null, activePointer = null, rescueTimer;
@@ -47,16 +47,16 @@ function showWords(text) {
   $('monster-frame').replaceChildren(words);
   $('monster-frame').setAttribute('aria-label', `Whisper: ${text}`);
 }
-function paperLabel(kicker, number, footer = 'passed from ghost to ghost.') {
-  $('paper-kicker').textContent = kicker; $('paper-number').textContent = number; $('paper-footer').textContent = footer;
+function paperLabel(kicker, number, footer = '') {
+  $('paper-kicker').textContent = kicker; $('paper-number').textContent = '';  $('paper-footer').textContent = footer;
 }
 function updateTurns(index) {
   $('turn-list').replaceChildren(...turns.map((turn, i) => {
     const item = document.createElement('li'); item.className = i < index ? 'complete' : i === index ? 'active' : '';
     if (i === index) item.setAttribute('aria-current', 'step');
-    const number = document.createElement('span'); number.textContent = i < index ? '✓' : String(i + 1);
+    const number = document.createElement('span'); number.textContent = i < index ? 'Done' : String(i + 1);
     const name = document.createElement('span'); name.textContent = i === 2 && chain.recorded ? 'Recorded rescue' : turn.name;
-    const kind = document.createElement('span'); kind.className = 'turn-kind'; kind.textContent = turn.kind === 'draw' ? 'draws' : 'guesses';
+    const kind = document.createElement('span'); kind.className = 'turn-kind'; kind.textContent = i === 2 && !chain.recorded ? 'draw' : turn.kind === 'draw' ? 'draws' : 'guesses';
     item.append(number, name, kind); return item;
   }));
 }
@@ -76,12 +76,12 @@ function prompt(text) {
 }
 function setTurn(i) {
   const turn = turns[i]; updateTurns(i);
-  $('turn-label').textContent = `TURN ${i + 1} OF 6 · ${i === 2 && chain.recorded ? 'RECORDED RESCUE' : turn.name.toUpperCase()}`;
+  $('turn-label').textContent = `Turn ${i + 1} of 6. ${i === 2 && chain.recorded ? 'Recorded rescue' : turn.name}`;
   $('turn-title').innerHTML = i === 2 && chain.recorded ? 'The story<br>drifts again.' : turn.title;
-  $('turn-copy').textContent = turn.kind === 'draw' ? 'The whisper is becoming a drawing.' : 'This ghost sees only the drawing’s shape data.';
+  $('turn-copy').textContent = turn.kind === 'draw' ? 'The whisper is becoming a drawing.' : 'This ghost sees only the drawing.';
   $('rescue-original').hidden = i !== 2 || chain.recorded;
-  $('stage-counter').textContent = `${String(i + 1).padStart(2, '0')} / 06 · ${turn.kind === 'draw' ? 'DRAW' : 'WHISPER'}`;
-  paperLabel(turn.kind === 'draw' ? `${i === 2 && chain.recorded ? 'RECORDED RESCUE' : turn.name.toUpperCase()} DRAWS` : `${turn.name.toUpperCase()} GUESSES`, String(i + 1).padStart(2, '0'));
+  $('stage-counter').textContent = '';
+  paperLabel(turn.kind === 'draw' ? `${i === 2 && chain.recorded ? 'Recorded rescue' : turn.name} draws` : `${turn.name} guesses`, String(i + 1));
   sound.cue(`narrator-${i + 1}`);
 }
 async function watchRecorded() {
@@ -182,7 +182,7 @@ function playerTurn() {
     $('draw-time').textContent = 'About 30 seconds; take the time you need.';
     clearTimeout(rescueTimer); rescueTimer = setTimeout(() => { $('draw-time').textContent = 'Thirty seconds have passed. Finish when you’re ready.'; }, 30000);
     placeDrawingControls(); $('paper-holder').style.transform = ''; updateTools(); motion.setInk(null);
-    paperLabel('YOUR RESCUE · THE ORIGINAL WHISPER', '03', 'draw it back into the story.');
+    paperLabel('Your rescue drawing', '3');
     if (smallScreen.matches) $('rescue-original').scrollIntoView({ behavior: motion.reduced ? 'instant' : 'smooth', block: 'start' });
   });
 }
@@ -235,7 +235,7 @@ async function finish(shared = false) {
   $('result-try').hidden = !chain.recorded; $('same').hidden = chain.recorded;
   $('training-note').hidden = !chain.recorded; $('strip-pair').value = '1';
   $('share').hidden = !engine.hasStorage(); $('share-status').textContent = '';
-  $('stage-counter').textContent = 'THE WHOLE WAYWARD STORY';
+  $('stage-counter').textContent = '';
   await showFlip(6, false); $('flip-play').textContent = '▶ Play flipbook';
   $('result-panel').querySelector('h1').setAttribute('tabindex', '-1'); $('result-panel').querySelector('h1').focus({ preventScroll: true });
   if (!shared) {
@@ -254,14 +254,14 @@ function stopFlip() { clearTimeout(flipTimer); flipGeneration++; flipPlaying = f
 async function showFlip(index, animate = true) {
   $('flipbook-caption').hidden = true;
   flipIndex = index; $('flip-range').value = String(index); $('flip-count').textContent = `${index} / 6`;
-  if (index === 0) { paperLabel('THE FIRST WHISPER', '00', 'this is how it started.'); showWords(chain.first); }
+  if (index === 0) { paperLabel('The first whisper', '0'); showWords(chain.first); }
   else {
     const entry = chain.steps[index - 1];
-    paperLabel(`${entry.name.toUpperCase()} ${entry.kind === 'draw' ? 'DREW' : 'GUESSED'}`, String(index).padStart(2, '0'), chain.recorded ? 'Recorded chain' : entry.rescue ? 'the rescue turn.' : 'passed from ghost to ghost.');
+    paperLabel(`${entry.name} ${entry.kind === 'draw' ? 'drew' : 'guessed'}`, String(index), chain.recorded ? 'Recorded chain' : entry.rescue ? 'Your rescue drawing' : '');
     if (entry.kind === 'draw') showMonster(entry.svg, `${entry.name}'s drawing`);
     else {
       showMonster(chain.steps[index - 2].svg, `The drawing ${entry.name} read`);
-      $('paper-footer').textContent = 'the drawing → the guess';
+      $('paper-footer').textContent = '';
       $('flipbook-caption').textContent = `“${entry.text}”`; $('flipbook-caption').hidden = false;
     }
   }
@@ -282,12 +282,12 @@ function resetGame(whisper = null, clearRoute = true) {
   $('notice').hidden = true; $('flipbook-caption').hidden = true; $('flipbook-controls').hidden = true; $('drawing-controls').hidden = true;
   $('draw-canvas').setAttribute('hidden', ''); $('theatre').classList.remove('drawing-mode'); placeDrawingControls();
   $('paper-holder').style.transform = ''; $('play-aside').hidden = false;
-  $('play-aside').textContent = 'Ghosts only read the shape data. They can get it wrong.';
+  $('play-aside').textContent = 'Ghosts only see the drawing. They can get it wrong.';
   panel(whisper ? 'whisper-panel' : 'intro-panel'); badges();
   if (whisper) $('first-whisper').value = whisper;
   if (data) showMonster(data.chains[0].steps[1].svg, 'Recorded model drawing: a bat with too many teeth');
-  paperLabel('A RECORDED MODEL DRAWING', '01', 'it sounded different in my head.');
-  $('stage-counter').textContent = 'THE STAGE IS YOURS';
+  paperLabel('Recorded model drawing', '1', data?.chains[0].start || '');
+  $('stage-counter').textContent = '';
   if (clearRoute) history.replaceState(null, '', location.pathname + location.search);
 }
 async function shareChain() {
@@ -343,6 +343,8 @@ async function openSaved() {
 }
 window.addEventListener('hashchange', openSaved);
 // A missing storage service is ordinary for the static build; it exposes no link UI.
+if (engine.getMode() === 'live') engine.wake();
+document.addEventListener('ghosts-waking', () => { $('turn-copy').textContent = 'The ghosts are waking up. The first turn can take a minute.'; });
 engine.checkStorage().then(live => { if (phase === 'result') $('share').hidden = !live; });
 try { data = await engine.loadRecordings(); resetGame(null, false); await openSaved(); }
 catch (error) { announce(`${error.message} Reload to try again.`); }

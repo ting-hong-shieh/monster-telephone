@@ -3,3 +3,5 @@ uvicorn==0.30.6
 tinker
 transformers
 jinja2
+pillow>=11
+svgelements==1.9.6

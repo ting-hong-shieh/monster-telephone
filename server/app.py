@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import io
 import os
 import re
 import time
@@ -11,18 +12,23 @@ from collections import defaultdict, deque
 import tinker
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
+from PIL import Image, ImageDraw
 from pydantic import BaseModel, Field
+from svgelements import Close, Line, Move, Path
 
 BASE = "Qwen/Qwen3.5-4B"
 ARTIST = os.environ["ARTIST_PATH"]
-ORIGINS = os.environ.get("ALLOWED_ORIGINS", "https://monstertelephone.tech").split(",")
+ORIGINS = os.environ.get("ALLOWED_ORIGINS", "https://monstertelephone.tech,https://www.monstertelephone.tech").split(",")
 TOKEN_LIMIT = int(os.environ.get("DAILY_TOKEN_LIMIT", "2000000"))
 PER_MINUTE = int(os.environ.get("REQUESTS_PER_MINUTE", "30"))
 BRIEF = (
     "Draw {monster} as a simple black line drawing. Reply with only one SVG: viewBox 0 0 256 256, "
     "at most 14 <path> elements, each with fill=\"none\" stroke=\"black\" stroke-width=\"3\". No text, no comments."
 )
-ASK = "Here is a line drawing as SVG:\n{svg}\nYou can only guess what it shows. In at most eight words, describe the creature and what is odd about it."
+ASK = "Here is a line drawing. You can only guess what it shows. In at most eight words, describe the creature and what is odd about it."
+PICTURE = 448
+LINE = 6
+IMAGE_TOKENS = 256
 PATH_DATA = re.compile(r"^[MmLlHhVvCcSsQqTtAaZz0-9eE.,\s-]+$")
 
 app = FastAPI(title="Monster Telephone")
@@ -37,7 +43,7 @@ class Whisper(BaseModel):
 
 
 class Drawing(BaseModel):
-    svg: str = Field(min_length=20, max_length=6000)
+    svg: str = Field(min_length=20, max_length=200000)
 
 
 def paths(svg: str | None, most: int) -> list[str] | None:
@@ -63,6 +69,33 @@ def paths(svg: str | None, most: int) -> list[str] | None:
 def wrap(found: list[str]) -> str:
     body = "".join(f'<path d="{data}"/>' for data in found)
     return f'<svg viewBox="0 0 256 256" fill="none" stroke="black" stroke-width="3">{body}</svg>'
+
+
+def picture(found: list[str]) -> bytes:
+    """Draw path data on white, the way the listener was tested."""
+    image = Image.new("RGB", (PICTURE, PICTURE), "white")
+    pen = ImageDraw.Draw(image)
+    scale = PICTURE / 256
+
+    def stroke(line: list) -> None:
+        if len(line) > 1:
+            pen.line([(x * scale, y * scale) for x, y in line], fill="black", width=LINE, joint="curve")
+
+    for data in found:
+        line: list = []
+        for part in Path(data):
+            if isinstance(part, Move):
+                stroke(line)
+                line = [(part.end.x, part.end.y)]
+            elif isinstance(part, (Line, Close)):
+                if part.end is not None:
+                    line.append((part.end.x, part.end.y))
+            else:
+                line += [(point.x, point.y) for point in (part.point(step / 8) for step in range(1, 9))]
+        stroke(line)
+    out = io.BytesIO()
+    image.save(out, "PNG")
+    return out.getvalue()
 
 
 def encode(tokenizer, user: str) -> list[int]:
@@ -101,12 +134,35 @@ async def ask(client, user: str, tokens: int, temperature: float) -> str:
     return tokenizer.decode(made, skip_special_tokens=True)
 
 
+async def look(found: list[str]) -> str:
+    tokenizer = ghosts["tokenizer"]
+    before, after = ghosts["look"]
+    prompt = tinker.ModelInput(
+        chunks=[
+            tinker.EncodedTextChunk(tokens=before),
+            tinker.types.ImageChunk(data=picture(found), format="png"),
+            tinker.EncodedTextChunk(tokens=after),
+        ]
+    )
+    result = await ghosts["listener"].sample_async(
+        prompt=prompt, num_samples=1, sampling_params=tinker.SamplingParams(max_tokens=24, temperature=0.8)
+    )
+    made = result.sequences[0].tokens
+    spent["tokens"] += len(before) + len(after) + IMAGE_TOKENS + len(made)
+    return tokenizer.decode(made, skip_special_tokens=True)
+
+
 @app.on_event("startup")
 async def wake() -> None:
     service = tinker.ServiceClient(display_name="monster-telephone-live")
     ghosts["listener"] = await service.create_sampling_client_async(base_model=BASE)
     ghosts["artist"] = await service.create_sampling_client_async(model_path=ARTIST)
-    ghosts["tokenizer"] = ghosts["listener"].get_tokenizer()
+    tokenizer = ghosts["tokenizer"] = ghosts["listener"].get_tokenizer()
+    text = tokenizer.apply_chat_template(
+        [{"role": "user", "content": [{"type": "image"}, {"type": "text", "text": ASK}]}],
+        tokenize=False, add_generation_prompt=True, enable_thinking=False,
+    )
+    ghosts["look"] = [tokenizer.encode(part, add_special_tokens=False) for part in text.split("<|image_pad|>")]
 
 
 @app.get("/api/health")
@@ -134,5 +190,5 @@ async def whisper(item: Drawing, request: Request) -> dict:
     if not drawn:
         raise HTTPException(422, "That is not a drawing the ghosts can read.")
     began = time.perf_counter()
-    text = await ask(ghosts["listener"], ASK.format(svg=wrap(drawn)), 24, 0.8)
+    text = await look(drawn)
     return {"text": text.strip(), "ms": round((time.perf_counter() - began) * 1000)}

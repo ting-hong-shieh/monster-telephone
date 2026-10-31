@@ -15,6 +15,7 @@ let gazeUntil = 0;
 let frozen = false;
 let quiet = false;
 let curtains, lights;
+let signPaths = [];
 const ease = x => .5 - Math.cos(Math.PI * Math.max(0, Math.min(1, x))) / 2;
 const mix = (a, b, p) => a + (b - a) * p;
 
@@ -111,7 +112,7 @@ export async function strokeOn(svg, duration = 4000) {
   drawing.drawing = true;
   const NS = 'http://www.w3.org/2000/svg';
   const pen = document.createElementNS(NS, 'g');
-  pen.setAttribute('fill', '#c95329');
+  pen.setAttribute('fill', '#ad173d');
   pen.setAttribute('stroke', '#292f35');
   pen.setAttribute('stroke-width', '1');
   const tip = document.createElementNS(NS, 'path');
@@ -168,6 +169,7 @@ export async function pageTurn(final = false, duration = final ? 900 : 480) {
 
 export function initMotion() {
   ghosts = [...document.querySelectorAll('.ghost-art')];
+  signPaths = [...document.querySelectorAll('.sign-ink path')].map((path, i) => ({ path, d: path.getAttribute('d'), tokens: pathTokens(path.getAttribute('d')), i }));
   // Isolate moving scenery so a tiny curtain breath does not repaint the stage.
   const NS = 'http://www.w3.org/2000/svg';
   const set = document.querySelector('.set-art');
@@ -242,6 +244,7 @@ function ambient(now) {
   });
   if (secondary) {
     lastSet = tick;
+    for (const { path, d, tokens, i } of signPaths) path.setAttribute('d', reduced ? d : warp(tokens, t, i));
     curtains?.forEach(element => { element.style.transform = `scaleX(${1 + (reduced ? 0 : Math.sin(t * .9) * .008)})`; });
     lights?.setAttribute('opacity', reduced ? '.7' : String(.62 + Math.sin(t * 4.1) * .13 + Math.sin(t * 7) * .08));
   }

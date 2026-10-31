@@ -11,9 +11,7 @@ The ghosts run on open-weight models through [Tinker](https://tinker-docs.thinki
 | Role | Model | Sees |
 | --- | --- | --- |
 | Artist | Qwen3.5-4B, fine-tuned | The whisper only |
-| Listener | Qwen3.5-4B | The drawing's SVG text only |
-
-The listener reads shape data, not pixels, so it misreads drawings in odd ways. That is the game.
+| Listener | Qwen3.5-4B | The drawing as a picture, not the whisper |
 
 ## The fine-tune
 

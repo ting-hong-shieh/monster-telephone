@@ -1,4 +1,6 @@
-export const LIVE_TIMEOUT = 12000;
+export const LIVE_TIMEOUT = 20000;
+const API = ['localhost', '127.0.0.1'].includes(location.hostname) ? '' : 'https://monster-telephone-ghosts.onrender.com';
+const WAKE_LIMIT = 80000;
 const mode = new URLSearchParams(location.search).get('mode') === 'recorded' ? 'recorded' : 'live';
 export function getMode() { return mode; }
 let recordings;
@@ -39,6 +41,17 @@ export function sanitizeSVG(source) {
 }
 
 
+let waking = null;
+export function wake() {
+  waking ??= fetch(`${API}/api/health`, { signal: AbortSignal.timeout(WAKE_LIMIT) }).catch(() => null);
+  return waking;
+}
+async function ready() {
+  const slow = setTimeout(() => document.dispatchEvent(new Event('ghosts-waking')), 1200);
+  await wake();
+  clearTimeout(slow);
+}
+
 async function request(path, options = {}) {
   const controller = new AbortController();
   let timeout;
@@ -46,12 +59,12 @@ async function request(path, options = {}) {
     // One deadline covers headers and the complete response body.
     return await Promise.race([
       (async () => {
-        const response = await fetch(`/api/${path}`, { ...options, signal: controller.signal });
+        const response = await fetch(`${API}/api/${path}`, { ...options, signal: controller.signal });
         if (!response.ok) throw new Error('The ghost lost the connection.');
         return response.json();
       })(),
       new Promise((_, reject) => { timeout = setTimeout(() => {
-        reject(new Error('The ghost took more than 12 seconds.'));
+        reject(new Error('The ghost took more than 20 seconds.'));
         controller.abort();
       }, LIVE_TIMEOUT); })
     ]);
@@ -62,11 +75,13 @@ function post(path, payload) {
 }
 export async function draw(whisper) {
   if (typeof whisper !== 'string' || !whisper.trim()) throw new Error('Give the ghosts a whisper first.');
+  await ready();
   const result = await post('draw', { whisper });
   sanitizeSVG(result.svg);
   return { svg: result.svg };
 }
 export async function whisper(svg) {
+  await ready();
   const result = await post('whisper', { svg: sanitizeSVG(svg).outerHTML });
   if (typeof result.text !== 'string' || !result.text.trim() || result.text.length > 500) throw new Error('The ghost returned an unreadable whisper.');
   return { text: result.text };

@@ -21,33 +21,33 @@ export async function makeStrip(chain, pair = 1) {
   const selected = Math.max(0, Math.min(2, pair)) * 2;
   const canvas = document.createElement('canvas'); canvas.width = 1500;
   const ctx = canvas.getContext('2d');
-  ctx.font = 'italic 34px Georgia';
+  ctx.font = '34px Arial';
   const originalBottom = wrap(ctx, `“${chain.first}”`, -10000, 285, 390, 47);
   const originalDrawingY = Math.max(450, originalBottom + 35);
-  ctx.font = 'italic 26px Georgia';
+  ctx.font = '26px Arial';
   const guessBottom = Math.max(
     wrap(ctx, `“${chain.steps[selected + 1].text}”`, -10000, 610, 390, 35),
     wrap(ctx, `“${chain.steps[5].text}”`, -10000, 610, 390, 35)
   );
   canvas.height = Math.max(900, originalDrawingY + 400, guessBottom + 100);
-  ctx.fillStyle = '#f4efdf'; ctx.fillRect(0, 0, canvas.width, canvas.height);
-  ctx.fillStyle = '#272d36'; ctx.font = '44px Georgia'; ctx.fillText('Monster Telephone', 48, 70);
+  ctx.fillStyle = '#111f25'; ctx.fillRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = '#eff4f1'; ctx.font = '44px Arial'; ctx.fillText('Monster Telephone', 48, 70);
   ctx.font = '18px Arial'; ctx.fillText(chain.recorded ? 'Recorded chain' : 'A monster passed through five AI ghosts', 50, 107);
-  const labels = ['ORIGINAL WHISPER', selected === 2 ? 'THE RESCUE → THE GUESS' : 'THE DRAWING → THE GUESS', 'THE ENDING'];
+  const labels = ['Original whisper', selected === 2 ? 'Your rescue and its guess' : 'The drawing and its guess', 'The ending'];
   for (let i = 0; i < 3; i++) {
     const x = 35 + i * 490;
-    ctx.fillStyle = '#fcf8eb'; ctx.fillRect(x, 145, 450, canvas.height - 220);
-    ctx.strokeStyle = '#d6d0be'; ctx.lineWidth = 2; ctx.strokeRect(x, 145, 450, canvas.height - 220);
-    ctx.fillStyle = '#727366'; ctx.font = '16px Arial'; ctx.fillText(labels[i], x + 28, 186);
+    ctx.fillStyle = '#f1f4f2'; ctx.fillRect(x, 145, 450, canvas.height - 220);
+
+    ctx.fillStyle = '#16272c'; ctx.font = '16px Arial'; ctx.fillText(labels[i], x + 28, 186);
   }
-  ctx.fillStyle = '#272d36'; ctx.font = 'italic 34px Georgia'; wrap(ctx, `“${chain.first}”`, 65, 285, 390, 47);
+  ctx.fillStyle = '#16272c'; ctx.font = '34px Arial'; wrap(ctx, `“${chain.first}”`, 65, 285, 390, 47);
   await drawInk(ctx, chain.steps[0].svg, 100, originalDrawingY, 310);
   await drawInk(ctx, chain.steps[selected].svg, 580, 215, 340);
   await drawInk(ctx, chain.steps[4].svg, 1070, 215, 340);
-  ctx.fillStyle = '#272d36'; ctx.font = 'italic 26px Georgia';
+  ctx.fillStyle = '#16272c'; ctx.font = '26px Arial';
   wrap(ctx, `“${chain.steps[selected + 1].text}”`, 555, 610, 390, 35);
-  ctx.fillStyle = '#c95329'; wrap(ctx, `“${chain.steps[5].text}”`, 1045, 610, 390, 35);
-  ctx.fillStyle = '#727366'; ctx.font = '18px Georgia'; ctx.fillText('It sounded different in my head.', 50, canvas.height - 34);
+  ctx.fillStyle = '#16272c'; wrap(ctx, `“${chain.steps[5].text}”`, 1045, 610, 390, 35);
+  ctx.fillStyle = '#eff4f1'; ctx.font = '18px Arial'; ctx.fillText('Monster Telephone', 50, canvas.height - 34);
   return new Promise((resolve, reject) => canvas.toBlob(blob => blob ? resolve(blob) : reject(new Error('PNG export failed.')), 'image/png'));
 }
 export async function saveStrip(chain, pair) {

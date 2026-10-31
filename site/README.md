@@ -31,7 +31,7 @@ POST /api/whisper  {"svg":"…"}     → {"text":"…"}
 The 12 second deadline includes reading the response body. Failed calls stop
 the round. Retry repeats the failed turn; Watch a recorded chain starts a
 separate recording. Player chains never receive recorded substitute turns.
-Ghosts only read drawing shape data. SVG rendering keeps direct path children
+Ghosts only see the drawing. SVG rendering keeps direct path children
 and their `d` attributes; scripts, nested content, and event handlers are dropped.
 
 The ending compares the original and final whisper, then offers a replayable,
@@ -68,9 +68,27 @@ names are described in [data/audio/README.md](data/audio/README.md).
 Run the browser checks with the requested local Playwright installation:
 
 ```sh
-node site/checks/verify.cjs
+node site/.taste-skill/verify.cjs
 ```
 
 The runner starts its own server on port 4173 and saves reports and screenshots
-in `checks/`. Live inference and storage checks use mocked HTTP responses;
-these do not verify a deployed backend.
+in `.taste-skill/game-checks/`. Drawing and guessing checks use mocked HTTP responses. Link sharing is checked
+as hidden without storage. These checks do not verify a deployed backend.
+
+The theatre fills the page. Its show sign is hand-drawn SVG with the same seeded
+line boil as the monsters. Crimson curtains, cool white paper and dark stage
+wings replace the previous editorial palette. Interface text uses self-hosted
+Public Sans; its licence is in `fonts/OFL.txt`.
+
+Design notes, the direction draw, screenshot critiques and browser reports are
+in `.taste-skill/`. Run the taste inspector through its local server wrapper:
+
+```sh
+node site/.taste-skill/inspect.cjs --out .taste-skill/after --allow few-pictures
+```
+
+The picture-floor exception is deliberate: the drawings are the game's actual
+SVG output. Photographs would replace the subject with unrelated imagery.
+The inspector also cannot read the drawn sign as type; its text-only hero
+warnings are assessed against the screenshots. The eight moving elements it
+counts exclude the SVG path deformation and ghost poses.
