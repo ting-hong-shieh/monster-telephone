@@ -125,13 +125,24 @@ async function start(whisper) {
 }
 function waitForContinue() {
   phase = 'holding'; $('continue-controls').hidden = false;
+  if (smallScreen.matches) $('continue').scrollIntoView({ behavior: motion.reduced ? 'instant' : 'smooth', block: 'nearest' });
   return new Promise(resolve => { pendingResolve = resolve; });
 }
+// Ghosts stay busy for as long as the server takes.
+async function busy(ghost, kind, work) {
+  let settled = false;
+  const job = work.finally(() => { settled = true; });
+  job.catch(() => {});
+  do await motion.ghostAction(ghost, kind, 1100); while (!settled);
+  return job;
+}
+const readingTime = text => Math.min(4200, 1500 + text.trim().split(/\s+/).length * 240);
 async function continueRound() {
   phase = 'playing'; $('failure-controls').hidden = true; $('notice').hidden = true;
   try {
     for (; stepIndex < 6; stepIndex++) {
       const i = stepIndex, turn = turns[i]; setTurn(i);
+      $('turn-copy').textContent = turn.kind === 'draw' ? `${turn.name} is drawing…` : `${turn.name} is studying the drawing…`;
       const previous = chain.steps.at(-1);
       if (turn.kind === 'draw') {
         const text = i === 0 ? chain.first : i === 2 ? chain.first : previous.text; prompt(text);
@@ -146,26 +157,24 @@ async function continueRound() {
           if (delegated) { $('turn-copy').textContent = 'A ghost is drawing your original whisper.'; prompt(chain.first); }
         }
         if (i !== 2 || delegated) {
-          await motion.ghostAction(turn.ghost, 'draw');
-          const result = await engine.draw(text); svg = result.svg;
+          const result = await busy(turn.ghost, 'draw', engine.draw(text)); svg = result.svg;
           await motion.pageTurn();
-          await motion.strokeOn(showMonster(svg));
+          await motion.strokeOn(showMonster(svg), 3000);
         } else showMonster(svg, 'Your rescue drawing');
         chain.steps.push({ kind: 'draw', svg, name: i === 2 ? delegated ? 'Rescue ghost' : 'You' : turn.name, rescue: i === 2, delegated });
-        $('turn-copy').textContent = i === 2 ? 'Your rescue is ready for Moth.' : 'The drawing is ready. Take a look before it travels.';
-        await waitForContinue();
+        $('turn-copy').textContent = i === 2 ? 'Your rescue is on its way to Moth.' : 'The drawing is ready.';
+        await motion.still(i === 2 ? 800 : 1000);
       } else {
-        await motion.ghostAction(turn.ghost, 'whisper');
-        const result = await engine.whisper(previous.svg);
+        const result = await busy(turn.ghost, 'whisper', engine.whisper(previous.svg));
         chain.steps.push({ kind: 'whisper', text: result.text, name: turn.name });
         $('turn-copy').textContent = `“${result.text}”`; $('next-prompt').hidden = true;
         // Leave the picture beside its guess and give the rescue reading stillness.
-        await motion.still(i === 3 ? 1800 : 1400);
+        await motion.still(readingTime(result.text) + (i === 3 ? 1200 : 0));
         if (i === 3) {
           await motion.ghostAction('moth', 'whisper');
           $('play-aside').textContent = 'Moth glances back at the paper.';
         }
-        if (i < 5) await waitForContinue();
+        if (i === 1) await waitForContinue();
       }
       phase = 'playing';
     }
@@ -179,13 +188,14 @@ async function continueRound() {
 function playerTurn() {
   return new Promise(resolve => {
     playerResolve = resolve; phase = 'drawing'; strokes = []; currentStroke = null; activePointer = null;
+    document.body.classList.add('rescuing');
     $('draw-canvas').replaceChildren(); $('draw-canvas').removeAttribute('hidden'); $('monster-frame').hidden = true;
     $('drawing-controls').hidden = false; $('play-aside').hidden = true; $('theatre').classList.add('drawing-mode');
     $('draw-time').textContent = 'About 30 seconds; take the time you need.';
     clearTimeout(rescueTimer); rescueTimer = setTimeout(() => { $('draw-time').textContent = 'Thirty seconds have passed. Finish when you’re ready.'; }, 30000);
     placeDrawingControls(); $('paper-holder').style.transform = ''; updateTools(); motion.setInk(null);
     paperLabel('Your rescue drawing', '3');
-    if (smallScreen.matches) $('rescue-original').scrollIntoView({ behavior: motion.reduced ? 'instant' : 'smooth', block: 'start' });
+    if (smallScreen.matches) scrollTo({ top: 0, behavior: motion.reduced ? 'instant' : 'smooth' });
   });
 }
 function finishDrawing(delegate = false) {
@@ -194,6 +204,7 @@ function finishDrawing(delegate = false) {
   const svg = delegate ? null : engine.sanitizeSVG($('draw-canvas').outerHTML).outerHTML;
   clearTimeout(rescueTimer); $('draw-canvas').setAttribute('hidden', ''); $('monster-frame').hidden = false;
   $('drawing-controls').hidden = true; $('play-aside').hidden = false; $('theatre').classList.remove('drawing-mode');
+  document.body.classList.remove('rescuing');
   phase = 'playing'; placeDrawingControls(); playerResolve(svg); playerResolve = undefined;
 }
 function point(event) {
@@ -282,7 +293,7 @@ function startFlip(from = 0) {
 function resetGame(whisper = null, clearRoute = true) {
   ++runGeneration; stopFlip(); sound.stopAll(); clearTimeout(rescueTimer); phase = whisper ? 'whisper' : 'idle'; chain = null;
   $('notice').hidden = true; $('flipbook-caption').hidden = true; $('flipbook-controls').hidden = true; $('drawing-controls').hidden = true;
-  $('draw-canvas').setAttribute('hidden', ''); $('theatre').classList.remove('drawing-mode'); placeDrawingControls();
+  $('draw-canvas').setAttribute('hidden', ''); $('theatre').classList.remove('drawing-mode'); document.body.classList.remove('rescuing'); placeDrawingControls();
   $('paper-holder').style.transform = ''; $('play-aside').hidden = false;
   $('play-aside').textContent = 'Ghosts only see the drawing. They can get it wrong.';
   panel(whisper ? 'whisper-panel' : 'intro-panel'); badges();
