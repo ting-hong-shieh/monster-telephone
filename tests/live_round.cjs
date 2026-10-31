@@ -17,15 +17,13 @@ const strokes=[...svg.matchAll(/d="([^"]+)"/g)].map(m=>[...m[1].matchAll(/[ML](-
  const advance=async()=>{await page.locator('#continue').waitFor({state:'visible',timeout:45000});await page.locator('#continue').click()};
  await page.goto(BASE);await page.locator('#monster-frame svg').waitFor();await page.waitForTimeout(1500);await shot('home');
  await page.locator('#try').click();await page.locator('#first-whisper').fill('a crab with enormous claws');await page.locator('#start-form button[type=submit]').click();
- await advance();await advance();
+ await advance();
  await page.locator('#drawing-controls').waitFor({state:'visible',timeout:45000});await page.waitForTimeout(800);await shot('rescue-empty');
  const box=await page.locator('#draw-canvas').boundingBox();
  const at=([x,y])=>[box.x+box.width*x/256,box.y+box.height*y/256];
  for(const s of strokes){const pts=s.filter((_,i)=>i%2===0);await page.mouse.move(...at(pts[0]));await page.mouse.down();for(const p of pts.slice(1))await page.mouse.move(...at(p));await page.mouse.up()}
  await shot('rescue-drawn');await page.locator('#done').click();
- await advance();await page.waitForTimeout(600);await shot('after-rescue');
- await advance();await advance();
- await page.locator('#result-panel').waitFor({state:'visible',timeout:45000});await page.waitForTimeout(2500);await shot('reveal');
+ await page.locator('#result-panel').waitFor({state:'visible',timeout:90000});await page.waitForTimeout(2500);await shot('reveal');
  console.log(JSON.stringify({errors,calls:log.length,overflow:await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth)}));
  await browser.close();
 })().catch(e=>{console.error('FAILED',e.message);process.exit(1)});
