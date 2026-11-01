@@ -1,5 +1,22 @@
 # Test results, 2026-10-31 (rules in prereg.md)
 
+## Added after the blind test, 2026-11-01 (not in prereg.md)
+
+`recognition_check.py`, output in `recognition_check.json`. Direction only: both checks were chosen after seeing the blind result.
+
+| Model | Drawings | Closest other prompt shows the same creature | Chance | p |
+| --- | --- | --- | --- | --- |
+| Base | 54 | 25.9% | 18.4% | 0.146 |
+| Fine-tuned, first run | 117 | 17.9% | 17.5% | 0.489 |
+| Fine-tuned, artist-2 | 118 | 22.0% | 17.4% | 0.137 |
+| Teacher | 92 | 27.2% | 16.8% | 0.022 |
+
+Pixel similarity after a blur, not recognition. The p value shuffles creature labels across prompts 2,000 times.
+
+Recorded chains, word match on the starting monster with close synonyms: 0 of 24 guesses in the eight rounds with a ghost in the player's seat, 1 of 3 in the one round with a real drawing. Each chain was recorded once.
+
+Wilson 95% intervals in the post's validity chart: base 36.4–53.9%, fine-tuned 92.9–99.1%, teacher 68.3–83.3%. They treat the two samples per prompt as independent, so they are slightly narrow.
+
 | Test | Result | Verdict |
 | --- | --- | --- |
 | A: live listener on teacher drawings | 0/54, control 0.004 | FAIL |

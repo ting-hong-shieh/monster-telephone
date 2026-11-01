@@ -1,0 +1,75 @@
+{
+ "pixels": {
+  "base": {
+   "drawings": 54,
+   "same_creature": 0.259,
+   "chance": 0.184,
+   "p": 0.1459
+  },
+  "student": {
+   "drawings": 117,
+   "same_creature": 0.179,
+   "chance": 0.175,
+   "p": 0.4893
+  },
+  "artist-2": {
+   "drawings": 118,
+   "same_creature": 0.22,
+   "chance": 0.174,
+   "p": 0.1369
+  },
+  "teacher": {
+   "drawings": 92,
+   "same_creature": 0.272,
+   "chance": 0.168,
+   "p": 0.022
+  }
+ },
+ "chains": [
+  {
+   "start": "a crab with enormous claws",
+   "guesses": 3,
+   "named": 1
+  },
+  {
+   "start": "a bat with too many teeth",
+   "guesses": 3,
+   "named": 0
+  },
+  {
+   "start": "a ghost wearing a tiny crown",
+   "guesses": 3,
+   "named": 0
+  },
+  {
+   "start": "a teapot with human feet",
+   "guesses": 3,
+   "named": 0
+  },
+  {
+   "start": "a skeleton holding a telephone",
+   "guesses": 3,
+   "named": 0
+  },
+  {
+   "start": "a cat with a second head",
+   "guesses": 3,
+   "named": 0
+  },
+  {
+   "start": "an owl afraid of its own shadow",
+   "guesses": 3,
+   "named": 0
+  },
+  {
+   "start": "a pumpkin eating a sock",
+   "guesses": 3,
+   "named": 0
+  },
+  {
+   "start": "a very polite vampire",
+   "guesses": 3,
+   "named": 0
+  }
+ ]
+}
